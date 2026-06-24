@@ -1,512 +1,98 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPA SMART SYSTEM V5 - Landing Page Builder</title>
+    <title>Revolusi Bisnis Anda dengan 3IReborn</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        /* Custom scrollbar for editor */
-        .scrollbar-hide::-webkit-scrollbar { width: 6px; }
-        .scrollbar-hide::-webkit-scrollbar-track { background: #f1f1f1; }
-        .scrollbar-hide::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
-        .scrollbar-hide::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-100 h-screen overflow-hidden flex flex-col">
-
-    <!-- Top Navigation -->
-    <header class="bg-blue-900 text-white p-4 flex justify-between items-center shadow-md z-10">
-        <div class="flex items-center gap-3">
-            <div class="bg-white text-blue-900 p-2 rounded-lg font-bold">NPA V5</div>
-        <h1 class="font-bold text-lg hidden sm:block">Landing Page Builder - 3IReborn</h1>
-    </div>
-    <div class="flex gap-2">
-        <button onclick="copyHTML()" class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold text-sm transition shadow-lg flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-            Copy Code
-        </button>
-        <button onclick="exportHTML()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition shadow-lg flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-            Download HTML
-        </button>
-    </div>
-</header>
-
-    <!-- Main Workspace -->
-    <main class="flex-1 flex flex-col md:flex-row overflow-hidden">
-        
-        <!-- Left Panel: Editor Form -->
-        <aside class="w-full md:w-1/3 lg:w-1/4 bg-white border-r shadow-lg flex flex-col h-[40vh] md:h-full overflow-y-auto scrollbar-hide">
-            <div class="p-6 space-y-6">
-                
-                <!-- Section: Logo & Gambar -->
-                <div>
-                    <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4">🖼️ Logo & Foto Utama</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Logo</label>
-                            <input type="file" id="input-logo" accept="image/*" onchange="handleImageUpload(event, 'prev-logo')" class="w-full border-gray-300 rounded-md shadow-sm p-2 border text-sm bg-gray-50">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Foto / Banner (Hero)</label>
-                            <input type="file" id="input-photo" accept="image/*" onchange="handleImageUpload(event, 'prev-photo')" class="w-full border-gray-300 rounded-md shadow-sm p-2 border text-sm bg-gray-50">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section: Header Info -->
-                <div>
-                    <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4">1. Header & Utama</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Judul Utama (Headline)</label>
-                            <input type="text" id="input-judul" oninput="updatePreview()" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500" value="Revolusi Bisnis Anda dengan 3IReborn">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Tagline</label>
-                            <input type="text" id="input-tagline" oninput="updatePreview()" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500" value="NPA SMART SYSTEM V5">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Hook (Kalimat Pancingan)</label>
-                            <textarea id="input-hook" oninput="updatePreview()" rows="3" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500">Tinggalkan Cara Lama! Dapatkan 10x Lipat Prospek Tanpa Harus Pusing Follow-Up Manual. Sistem cerdas ini bekerja 24/7 untuk Anda.</textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section: Deskripsi -->
-                <div>
-                    <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4">2. Deskripsi Penawaran</h2>
-                    <textarea id="input-deskripsi" oninput="updatePreview()" rows="5" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500">NPA SMART SYSTEM V5 adalah sistem terotomatisasi yang dirancang khusus untuk mitra 3IReborn. Sistem ini menyederhanakan proses rekrutmen, edukasi, dan konversi tim Anda. Anda tidak perlu lagi presentasi manual satu per satu, biarkan sistem yang menyaring prospek berkualitas untuk Anda.</textarea>
-                </div>
-
-                <!-- Section: Call To Action -->
-                <div>
-                    <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4">3. Tombol Aksi (CTA)</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Teks Tombol</label>
-                            <input type="text" id="input-cta-text" oninput="updatePreview()" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500" value="Ya, Saya Mau Sistem Ini!">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Link Tujuan (WhatsApp/Daftar)</label>
-                            <input type="text" id="input-cta-link" oninput="updatePreview()" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500" value="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20NPA%20System">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section: Testimoni -->
-                <div>
-                    <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4 flex justify-between items-center">
-                        4. Testimoni
-                        <button onclick="addTestimoni()" class="text-sm bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200">+ Tambah</button>
-                    </h2>
-                    <div id="testimoni-list" class="space-y-4">
-                        <!-- Testimoni inputs will be injected here -->
-                    </div>
-                </div>
-
-                <!-- Section: FAQ -->
-                <div>
-                    <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4 flex justify-between items-center">
-                        5. FAQ (Tanya Jawab)
-                        <button onclick="addFaq()" class="text-sm bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200">+ Tambah</button>
-                    </h2>
-                    <div id="faq-list" class="space-y-4">
-                        <!-- FAQ inputs will be injected here -->
-                    </div>
-                </div>
-
-                <!-- Section: Tags/Footer -->
-            <div>
-                <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4">6. Tag & Footer</h2>
-                <input type="text" id="input-tags" oninput="updatePreview()" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500" value="3IReborn, NPA System, Pasif Income, Bisnis Digital">
-            </div>
-
-            <!-- Section: Tema Warna -->
-            <div>
-                <h2 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4">7. Tema Warna</h2>
-                <select id="input-theme" onchange="updatePreview()" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-blue-500 focus:border-blue-500">
-                    <option value="blue">Biru Profesional (Default)</option>
-                    <option value="green">Hijau Sukses</option>
-                    <option value="red">Merah Semangat</option>
-                    <option value="dark">Gelap Elegan</option>
-                </select>
-            </div>
-
-            <div class="pb-10"></div>
-        </div>
-    </aside>
-
-        <!-- Right Panel: Live Preview -->
-        <main class="w-full md:w-2/3 lg:w-3/4 bg-gray-200 relative overflow-hidden flex justify-center pt-8 pb-8 px-4 h-[60vh] md:h-full">
-            <!-- Simulated Browser Window -->
-            <div class="bg-white w-full max-w-4xl h-full rounded-t-xl shadow-2xl flex flex-col overflow-hidden border border-gray-300">
-                <div class="bg-gray-100 border-b px-4 py-2 flex items-center gap-2">
-                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                    <div class="ml-4 text-xs text-gray-400 font-mono">Live Preview</div>
-                </div>
-                
-                <!-- PREVIEW CONTENT START -->
-                <div id="preview-frame" class="flex-1 overflow-y-auto w-full relative scroll-smooth">
-                    <!-- The actual landing page wrapper -->
-                <div id="export-target" class="font-sans text-gray-800 antialiased bg-slate-50 min-h-screen">
-                    
-                    <!-- Hero Section -->
-                    <section id="hero-section" class="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white px-6 py-20 text-center relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNmZmYiLz48L3N2Zz4=')]"></div>
+<body style="background-color: #f8fafc;">
+    <div id="export-target" style="font-family: 'Poppins', sans-serif;" class="text-gray-800 antialiased bg-slate-50 min-h-screen relative">
+                        
+                        <section id="hero-section" class="bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 text-white px-4 sm:px-6 pt-16 pb-24 text-center relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNmZmYiLz48L3N2Zz4=')]"></div>
                             
                             <div class="max-w-4xl mx-auto relative z-10 flex flex-col items-center">
-                                
-                                <!-- Logo Image Target -->
-                                <img id="prev-logo" src="" alt="Logo" class="hidden h-20 mb-8 object-contain drop-shadow-md">
+                                <img id="prev-logo" src="" alt="Logo" class="hidden max-h-16 mb-6 object-contain drop-shadow-md">
 
-                                <span id="prev-tagline" class="inline-block py-1 px-3 rounded-full bg-blue-700/50 text-blue-200 text-sm font-semibold tracking-wider mb-6 border border-blue-500/30">NPA SMART SYSTEM V5</span>
-                                <h1 id="prev-judul" class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">Revolusi Bisnis Anda dengan 3IReborn</h1>
-                                <p id="prev-hook" class="text-lg md:text-xl text-blue-100 mb-10 leading-relaxed max-w-3xl mx-auto">Tinggalkan Cara Lama! Dapatkan 10x Lipat Prospek Tanpa Harus Pusing Follow-Up Manual. Sistem cerdas ini bekerja 24/7 untuk Anda.</p>
+                                <span id="prev-tagline" class="inline-block py-1 px-3 rounded-full bg-blue-700/40 text-blue-200 text-xs font-semibold tracking-wider mb-4 border border-blue-500/30">NPA SMART SYSTEM V5</span>
+                                <h1 id="prev-judul" class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">Revolusi Bisnis Anda dengan 3IReborn</h1>
+                                <p id="prev-hook" class="text-sm sm:text-base text-blue-100 mb-8 leading-relaxed max-w-xl mx-auto">Tinggalkan Cara Lama! Dapatkan 10x Lipat Prospek Tanpa Harus Pusing Follow-Up Manual. Sistem cerdas ini bekerja 24/7 untuk Anda.</p>
                                 
-                                <a href="#" id="prev-cta-1" class="prev-cta-link inline-block bg-orange-500 hover:bg-orange-600 text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg shadow-orange-500/30 transition transform hover:-translate-y-1 mb-8">
-                                    <span class="prev-cta-text">Ya, Saya Mau Sistem Ini!</span>
+                                <a href="https://wa.me/6281234567890" id="prev-cta-1" target="_blank" class="prev-cta-link inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base font-bold py-3.5 px-6 rounded-full shadow-lg transition transform hover:-translate-y-0.5 mb-8">
+                                    <span class="prev-cta-text">Ya, Hubungi Saya Sekarang!</span>
                                 </a>
 
-                                <!-- Hero Photo Target -->
-                                <img id="prev-photo" src="" alt="Hero Banner" class="hidden w-full max-w-3xl mt-4 rounded-2xl shadow-2xl border-4 border-white/20 object-cover">
+                                <img id="prev-photo" src="" alt="Hero Banner" class="hidden w-full max-w-2xl mt-2 rounded-xl shadow-xl border-2 border-white/20 object-cover">
+                            </div>
+
+                            <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
+                                <svg id="theme-wave-svg" viewBox="0 0 1200 1200" preserveAspectRatio="none" class="relative block w-full h-[50px] sm:h-[80px]">
+                                    <path id="theme-wave-path" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V120H1200V0C1112.16,34.19,1017,45.23,922,40.15,758.91,31.45,600.61,114.8,443.4,122.88c-42.13,2.15-84.45-.89-126.65-6.52A369.87,369.87,0,0,1,321.39,56.44Z" fill="#f8fafc"></path>
+                                </svg>
+                            </div>
+                        </section>
+
+                        <section class="py-12 px-4 sm:px-6 bg-slate-50">
+                            <div class="max-w-3xl mx-auto text-center">
+                                <h2 class="text-2xl font-bold text-gray-900 mb-4">Kenapa Anda Butuh Sistem Ini?</h2>
+                                <p id="prev-deskripsi" class="text-sm sm:text-base text-gray-600 leading-relaxed mb-8 whitespace-pre-line text-left sm:text-center">NPA SMART SYSTEM V5 adalah sistem terotomatisasi yang dirancang khusus untuk mitra 3IReborn. Sistem ini menyederhanakan proses rekrutmen, edukasi, dan konversi tim Anda. Anda tidak perlu lagi presentasi manual satu per satu, biarkan sistem yang menyaring prospek berkualitas untuk Anda.</p>
                                 
-                            </div>
-                        </section>
-
-                        <!-- Description Section -->
-                        <section class="py-16 px-6 bg-white">
-                            <div class="max-w-4xl mx-auto text-center">
-                                <h2 class="text-3xl font-bold text-gray-900 mb-8">Kenapa Anda Butuh Sistem Ini?</h2>
-                                <p id="prev-deskripsi" class="text-lg text-gray-600 leading-relaxed text-left md:text-center whitespace-pre-line">NPA SMART SYSTEM V5 adalah sistem terotomatisasi yang dirancang khusus untuk mitra 3IReborn. Sistem ini menyederhanakan proses rekrutmen, edukasi, dan konversi tim Anda. Anda tidak perlu lagi presentasi manual satu per satu, biarkan sistem yang menyaring prospek berkualitas untuk Anda.</p>
-                            </div>
-                        </section>
-
-                        <!-- Testimonial Section -->
-                        <section class="py-16 px-6 bg-slate-100">
-                            <div class="max-w-5xl mx-auto">
-                                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Apa Kata Mereka?</h2>
-                                <div id="prev-testimoni-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                    <!-- Testimonials dynamically inserted here -->
+                                <div id="youtube-wrapper" class="w-full max-w-xl mx-auto aspect-video rounded-xl overflow-hidden shadow-lg border border-gray-200">
+                                    <iframe id="prev-youtube-iframe" class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                                 </div>
                             </div>
                         </section>
 
-                        <!-- FAQ Section -->
-                        <section class="py-16 px-6 bg-white">
-                            <div class="max-w-3xl mx-auto">
-                                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Pertanyaan yang Sering Diajukan</h2>
-                                <div id="prev-faq-container" class="space-y-4">
-                                    <!-- FAQs dynamically inserted here -->
-                                </div>
+                        <section class="py-12 px-4 sm:px-6 bg-white border-t border-b">
+                            <div class="max-w-4xl mx-auto">
+                                <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">Apa Kata Mereka?</h2>
+                                <div id="prev-testimoni-container" class="grid sm:grid-cols-2 gap-6">
+                <div class="bg-slate-50 p-4 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+                    <p class="text-xs sm:text-sm italic text-gray-600 mb-3">"Semenjak pakai NPA V5, tim saya berkembang pesat tanpa harus capek prospek offline."</p>
+                    <div class="font-bold text-xs text-gray-800">— Budi Santoso</div>
+                </div>
+            
+                <div class="bg-slate-50 p-4 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+                    <p class="text-xs sm:text-sm italic text-gray-600 mb-3">"Sistemnya bekerja otomatis. Prospek yang masuk via WA sudah paham sistem bisnis."</p>
+                    <div class="font-bold text-xs text-gray-800">— Siti Aminah</div>
+                </div>
+            </div>
                             </div>
                         </section>
 
-                        <!-- Bottom CTA -->
-                    <section id="bottom-section" class="py-20 px-6 bg-blue-900 text-center text-white">
-                        <div class="max-w-3xl mx-auto">
-                            <h2 class="text-3xl md:text-4xl font-bold mb-8">Siap Memulai Langkah Baru Anda?</h2>
-                                <a href="#" id="prev-cta-2" class="prev-cta-link inline-block bg-green-500 hover:bg-green-600 text-white text-lg font-bold py-4 px-10 rounded-full shadow-lg shadow-green-500/30 transition transform hover:-translate-y-1">
-                                    <span class="prev-cta-text">Ya, Saya Mau Sistem Ini!</span>
+                        <section class="py-12 px-4 sm:px-6 bg-slate-50">
+                            <div class="max-w-2xl mx-auto">
+                                <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">Pertanyaan Populer</h2>
+                                <div id="prev-faq-container" class="space-y-3">
+                <div class="bg-white border rounded-lg p-3.5 shadow-none text-left">
+                    <h4 class="font-bold text-xs sm:text-sm text-gray-900 mb-1">Apakah sistem ini gratis untuk tim?</h4>
+                    <p class="text-xs text-gray-600">Ya, sistem ini dirancang khusus sebagai fasilitas eksklusif percepatan tim 3IReborn.</p>
+                </div>
+            </div>
+                            </div>
+                        </section>
+
+                        <section id="bottom-section" class="py-16 px-4 bg-blue-950 text-center text-white relative">
+                            <div class="max-w-2xl mx-auto relative z-10">
+                                <h2 class="text-xl sm:text-2xl font-bold mb-6">Siap Memulai Langkah Baru Anda?</h2>
+                                <a href="https://wa.me/6281234567890" id="prev-cta-2" target="_blank" class="prev-cta-link inline-block bg-green-500 hover:bg-green-600 text-white text-sm sm:text-base font-bold py-3.5 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
+                                    <span class="prev-cta-text">Ya, Hubungi Saya Sekarang!</span>
                                 </a>
                             </div>
                         </section>
 
-                        <!-- Footer -->
-                        <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm border-t border-gray-800">
-                            <div class="max-w-4xl mx-auto px-6">
-                                <p class="mb-4">© 2026 NPA SMART SYSTEM V5 - 3IReborn. Hak Cipta Dilindungi.</p>
-                                <div class="flex justify-center flex-wrap gap-2 text-xs opacity-60" id="prev-tags">
-                                    <!-- Tags injected here -->
-                                </div>
+                        <footer class="bg-gray-900 text-gray-400 py-8 text-center text-xs border-t border-gray-800">
+                            <div class="max-w-4xl mx-auto px-4 space-y-4">
+                                <div id="prev-sosmed-box" class="flex justify-center gap-4 text-sm font-semibold text-gray-300"></div>
+                                <p>© 2026 NPA SMART SYSTEM V5 - 3IReborn. All Rights Reserved.</p>
+                                <div class="flex justify-center flex-wrap gap-1.5 opacity-50" id="prev-tags"><span class="bg-gray-800 px-2 py-0.5 rounded text-[10px]">#3IReborn</span><span class="bg-gray-800 px-2 py-0.5 rounded text-[10px]">#NPA System</span><span class="bg-gray-800 px-2 py-0.5 rounded text-[10px]">#Bisnis Digital</span></div>
                             </div>
                         </footer>
 
                     </div>
-                </div>
-                <!-- PREVIEW CONTENT END -->
-            </div>
-        </main>
-    </main>
-
-    <script>
-        // State Management
-        let testimonis = [
-            { id: 1, nama: "Budi Santoso", teks: "Semenjak pakai NPA V5, tim saya berkembang pesat tanpa harus capek presentasi offline." },
-            { id: 2, nama: "Siti Aminah", teks: "Sistemnya sangat user friendly. Prospek yang masuk sudah teredukasi dengan baik." }
-        ];
-
-        let faqs = [
-        { id: 1, tanya: "Apakah sistem ini cocok untuk pemula?", jawab: "Sangat cocok! Kami sudah menyediakan panduan step-by-step dan sistemnya berjalan otomatis." },
-        { id: 2, tanya: "Bagaimana cara mengakses sistem?", jawab: "Setelah mendaftar, Anda akan mendapatkan link akses khusus dan dashboard mitra." }
-    ];
-
-    const themes = {
-        blue: {
-            hero: "bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white px-6 py-20 text-center relative overflow-hidden",
-            tagline: "inline-block py-1 px-3 rounded-full bg-blue-700/50 text-blue-200 text-sm font-semibold tracking-wider mb-6 border border-blue-500/30",
-            hook: "text-lg md:text-xl text-blue-100 mb-10 leading-relaxed",
-            cta1: "prev-cta-link inline-block bg-orange-500 hover:bg-orange-600 text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg shadow-orange-500/30 transition transform hover:-translate-y-1",
-            bottom: "py-20 px-6 bg-blue-900 text-center text-white",
-            cta2: "prev-cta-link inline-block bg-green-500 hover:bg-green-600 text-white text-lg font-bold py-4 px-10 rounded-full shadow-lg shadow-green-500/30 transition transform hover:-translate-y-1"
-        },
-        green: {
-            hero: "bg-gradient-to-br from-green-900 via-green-800 to-teal-900 text-white px-6 py-20 text-center relative overflow-hidden",
-            tagline: "inline-block py-1 px-3 rounded-full bg-green-700/50 text-green-200 text-sm font-semibold tracking-wider mb-6 border border-green-500/30",
-            hook: "text-lg md:text-xl text-green-100 mb-10 leading-relaxed",
-            cta1: "prev-cta-link inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 text-lg font-bold py-4 px-8 rounded-full shadow-lg shadow-yellow-500/30 transition transform hover:-translate-y-1",
-            bottom: "py-20 px-6 bg-green-900 text-center text-white",
-            cta2: "prev-cta-link inline-block bg-teal-500 hover:bg-teal-600 text-white text-lg font-bold py-4 px-10 rounded-full shadow-lg shadow-teal-500/30 transition transform hover:-translate-y-1"
-        },
-        red: {
-            hero: "bg-gradient-to-br from-red-900 via-red-800 to-rose-900 text-white px-6 py-20 text-center relative overflow-hidden",
-            tagline: "inline-block py-1 px-3 rounded-full bg-red-700/50 text-red-200 text-sm font-semibold tracking-wider mb-6 border border-red-500/30",
-            hook: "text-lg md:text-xl text-red-100 mb-10 leading-relaxed",
-            cta1: "prev-cta-link inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-lg font-bold py-4 px-8 rounded-full shadow-lg shadow-yellow-500/30 transition transform hover:-translate-y-1",
-            bottom: "py-20 px-6 bg-red-900 text-center text-white",
-            cta2: "prev-cta-link inline-block bg-rose-500 hover:bg-rose-600 text-white text-lg font-bold py-4 px-10 rounded-full shadow-lg shadow-rose-500/30 transition transform hover:-translate-y-1"
-        },
-        dark: {
-            hero: "bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-6 py-20 text-center relative overflow-hidden",
-            tagline: "inline-block py-1 px-3 rounded-full bg-gray-700/50 text-gray-300 text-sm font-semibold tracking-wider mb-6 border border-gray-500/30",
-            hook: "text-lg md:text-xl text-gray-300 mb-10 leading-relaxed",
-            cta1: "prev-cta-link inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-1",
-            bottom: "py-20 px-6 bg-gray-900 text-center text-white",
-            cta2: "prev-cta-link inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-4 px-10 rounded-full shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-1"
-        }
-    };
-
-    // --- Image Upload Logic ---
-    function handleImageUpload(event, targetId) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const imgElement = document.getElementById(targetId);
-                imgElement.src = e.target.result; // Menyimpan foto dalam bentuk Base64 (Teks)
-                imgElement.classList.remove('hidden'); // Menampilkan foto di preview
-            }
-            reader.readAsDataURL(file);
-        } else {
-            document.getElementById(targetId).classList.add('hidden');
-        }
-    }
-
-    // Initialization
-    function init() {
-        renderTestimoniInputs();
-        renderFaqInputs();
-        updatePreview();
-    }
-
-    // --- DOM Update Logic ---
-    function updatePreview() {
-        // Get values
-        const judul = document.getElementById('input-judul').value;
-        const tagline = document.getElementById('input-tagline').value;
-        const hook = document.getElementById('input-hook').value;
-        const deskripsi = document.getElementById('input-deskripsi').value;
-        const ctaText = document.getElementById('input-cta-text').value;
-        const ctaLink = document.getElementById('input-cta-link').value;
-        const tags = document.getElementById('input-tags').value;
-        const themeKey = document.getElementById('input-theme').value;
-
-        // Apply Theme
-        const t = themes[themeKey];
-        document.getElementById('hero-section').className = t.hero;
-        document.getElementById('prev-tagline').className = t.tagline;
-        document.getElementById('prev-hook').className = t.hook;
-        document.getElementById('prev-cta-1').className = t.cta1;
-        document.getElementById('bottom-section').className = t.bottom;
-        document.getElementById('prev-cta-2').className = t.cta2;
-
-        // Update basic texts
-        document.getElementById('prev-judul').innerText = judul;
-            document.getElementById('prev-tagline').innerText = tagline;
-            document.getElementById('prev-hook').innerText = hook;
-            document.getElementById('prev-deskripsi').innerText = deskripsi;
-
-            // Update CTAs
-            document.querySelectorAll('.prev-cta-text').forEach(el => el.innerText = ctaText);
-            document.querySelectorAll('.prev-cta-link').forEach(el => el.href = ctaLink);
-
-            // Update Tags
-            const tagsHtml = tags.split(',').map(tag => `<span class="bg-gray-800 px-2 py-1 rounded">#${tag.trim()}</span>`).join('');
-            document.getElementById('prev-tags').innerHTML = tagsHtml;
-
-            // Render Arrays
-            renderTestimoniPreview();
-            renderFaqPreview();
-        }
-
-        // --- Testimoni Logic ---
-        function addTestimoni() {
-            testimonis.push({ id: Date.now(), nama: "", teks: "" });
-            renderTestimoniInputs();
-            updatePreview();
-        }
-
-        function removeTestimoni(id) {
-            testimonis = testimonis.filter(t => t.id !== id);
-            renderTestimoniInputs();
-            updatePreview();
-        }
-
-        function updateTestimoniData(id, field, value) {
-            const index = testimonis.findIndex(t => t.id === id);
-            if(index > -1) {
-                testimonis[index][field] = value;
-                updatePreview();
-            }
-        }
-
-        function renderTestimoniInputs() {
-            const container = document.getElementById('testimoni-list');
-            container.innerHTML = testimonis.map((t, index) => `
-                <div class="bg-gray-50 p-3 rounded border relative">
-                    <button onclick="removeTestimoni(${t.id})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold" title="Hapus">✕</button>
-                    <label class="text-xs text-gray-500">Nama</label>
-                    <input type="text" oninput="updateTestimoniData(${t.id}, 'nama', this.value)" value="${t.nama}" class="w-full text-sm border-gray-300 rounded mb-2 p-1 border">
-                    <label class="text-xs text-gray-500">Testimoni</label>
-                    <textarea oninput="updateTestimoniData(${t.id}, 'teks', this.value)" class="w-full text-sm border-gray-300 rounded p-1 border" rows="2">${t.teks}</textarea>
-                </div>
-            `).join('');
-        }
-
-        function renderTestimoniPreview() {
-            const container = document.getElementById('prev-testimoni-container');
-            if(testimonis.length === 0) {
-                container.innerHTML = '<p class="text-gray-400 text-center col-span-full">Belum ada testimoni.</p>';
-                return;
-            }
-            container.innerHTML = testimonis.map(t => `
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative">
-                    <div class="text-yellow-400 text-xl mb-4">★★★★★</div>
-                    <p class="text-gray-600 mb-6 italic">"${t.teks || '...'}"</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">${t.nama ? t.nama.charAt(0).toUpperCase() : 'U'}</div>
-                        <h4 class="font-bold text-gray-900">${t.nama || 'Nama Pengguna'}</h4>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // --- FAQ Logic ---
-        function addFaq() {
-            faqs.push({ id: Date.now(), tanya: "", jawab: "" });
-            renderFaqInputs();
-            updatePreview();
-        }
-
-        function removeFaq(id) {
-            faqs = faqs.filter(f => f.id !== id);
-            renderFaqInputs();
-            updatePreview();
-        }
-
-        function updateFaqData(id, field, value) {
-            const index = faqs.findIndex(f => f.id === id);
-            if(index > -1) {
-                faqs[index][field] = value;
-                updatePreview();
-            }
-        }
-
-        function renderFaqInputs() {
-            const container = document.getElementById('faq-list');
-            container.innerHTML = faqs.map(f => `
-                <div class="bg-gray-50 p-3 rounded border relative">
-                    <button onclick="removeFaq(${f.id})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold" title="Hapus">✕</button>
-                    <label class="text-xs text-gray-500">Pertanyaan</label>
-                    <input type="text" oninput="updateFaqData(${f.id}, 'tanya', this.value)" value="${f.tanya}" class="w-full text-sm border-gray-300 rounded mb-2 p-1 border">
-                    <label class="text-xs text-gray-500">Jawaban</label>
-                    <textarea oninput="updateFaqData(${f.id}, 'jawab', this.value)" class="w-full text-sm border-gray-300 rounded p-1 border" rows="2">${f.jawab}</textarea>
-                </div>
-            `).join('');
-        }
-
-        function renderFaqPreview() {
-            const container = document.getElementById('prev-faq-container');
-            if(faqs.length === 0) {
-                container.innerHTML = '<p class="text-gray-400 text-center">Belum ada FAQ.</p>';
-                return;
-            }
-            container.innerHTML = faqs.map(f => `
-                <div class="border border-gray-200 rounded-lg p-5">
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">${f.tanya || 'Pertanyaan?'}</h3>
-                    <p class="text-gray-600">${f.jawab || 'Jawaban akan tampil di sini.'}</p>
-                </div>
-            `).join('');
-        }
-
-        // --- Export Logic ---
-    function getGeneratedHTML() {
-        // Get HTML of the preview target
-        const innerContent = document.getElementById('export-target').outerHTML;
-        
-        // Build full HTML page string
-        return `
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${document.getElementById('input-judul').value} - ${document.getElementById('input-tagline').value}</title>
-<meta name="description" content="${document.getElementById('input-hook').value}">
-<script src="https://cdn.tailwindcss.com"><\/script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<style>body { font-family: 'Inter', sans-serif; }</style>
-</head>
-<body class="bg-slate-50">
-${innerContent}
 </body>
 </html>
-        `.trim();
-    }
-
-    function exportHTML() {
-        const htmlString = getGeneratedHTML();
-
-        // Create blob and download
-        const blob = new Blob([htmlString], { type: 'text/html' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `landing-page-3IReborn-${Date.now()}.html`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        
-        alert("File HTML sedang di-download! \n\nJika file tidak muncul (karena pemblokiran dari browser), silakan klik tombol 'Copy Code' di sebelahnya.");
-    }
-
-    function copyHTML() {
-        const htmlString = getGeneratedHTML();
-        
-        // Copy to clipboard
-        const tempTextArea = document.createElement("textarea");
-        tempTextArea.value = htmlString;
-        document.body.appendChild(tempTextArea);
-        tempTextArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempTextArea);
-        
-        alert("✅ Kode HTML berhasil disalin!\n\nSilakan buka aplikasi Notepad, paste (Ctrl+V) kodenya, dan simpan (Save As) dengan nama 'index.html'.");
-    }
-
-    // Run initialization
-    init();
-</script>
-</body>
-</html>
-
-
-
-```
