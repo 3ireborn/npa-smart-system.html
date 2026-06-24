@@ -1,26 +1,176 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revolusi Bisnis Anda dengan 3IReborn</title>
+    <title>NPA SMART SYSTEM V5 - Landing Page Builder</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@300;400;600;700;800&family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Scrollbar */
+        .scrollbar-hide::-webkit-scrollbar { width: 6px; height: 6px; }
+        .scrollbar-hide::-webkit-scrollbar-track { background: #f1f1f1; }
+        .scrollbar-hide::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+    </style>
 </head>
-<body style="background-color: #f8fafc;">
-    <div id="export-target" style="font-family: 'Poppins', sans-serif;" class="text-gray-800 antialiased bg-slate-50 min-h-screen relative">
+<body class="bg-gray-100 h-screen overflow-hidden flex flex-col font-sans">
+
+    <header class="bg-blue-900 text-white p-4 flex justify-between items-center shadow-md z-10 flex-shrink-0">
+        <div class="flex items-center gap-2">
+            <div class="bg-white text-blue-900 px-2 py-1 rounded font-black text-sm">NPA V5</div>
+            <h1 class="font-bold text-sm sm:text-base tracking-tight">LP Builder 3IReborn</h1>
+        </div>
+        <div class="flex gap-1 sm:gap-2">
+            <button onclick="copyHTML()" class="bg-gray-700 hover:bg-gray-800 text-white px-3 py-1.5 rounded-lg font-semibold text-xs transition shadow flex items-center gap-1">
+                Salin Kode
+            </button>
+            <button onclick="exportHTML()" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-lg font-semibold text-xs transition shadow flex items-center gap-1">
+                Download HTML
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        
+        <aside class="w-full lg:w-1/3 xl:w-1/4 bg-white border-b lg:border-b-0 lg:border-r shadow-md flex flex-col h-[45vh] lg:h-full overflow-y-auto scrollbar-hide">
+            <div class="p-4 sm:p-6 space-y-6">
+                
+                <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 space-y-3">
+                    <h2 class="text-sm font-bold text-blue-900 uppercase tracking-wider">🎨 Tampilan & Gaya</h2>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Pilihan Font (Gaya Huruf)</label>
+                        <select id="input-font" onchange="updatePreview()" class="w-full border-gray-300 rounded-md shadow-sm p-2 border text-sm focus:ring-blue-500 bg-white">
+                            <option value="'Poppins', sans-serif">Poppins (Modern & Bulat)</option>
+                            <option value="'Inter', sans-serif">Inter (Bersih & Elegan)</option>
+                            <option value="'Montserrat', sans-serif">Montserrat (Tegas)</option>
+                            <option value="'Roboto', sans-serif">Roboto (Formal)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Tema Warna & Background Melengkung</label>
+                        <select id="input-theme" onchange="updatePreview()" class="w-full border-gray-300 rounded-md shadow-sm p-2 border text-sm focus:ring-blue-500 bg-white">
+                            <option value="blue">Biru Profesional (Wave)</option>
+                            <option value="green">Hijau Sukses (Wave)</option>
+                            <option value="red">Merah Semangat (Wave)</option>
+                            <option value="dark">Gelap Premium (Wave)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-sm font-bold text-gray-800 border-b pb-1 mb-3">🖼️ Media & Logo</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs text-gray-600 mb-1">Upload Logo</label>
+                            <input type="file" id="input-logo" accept="image/*" onchange="handleImageUpload(event, 'prev-logo')" class="w-full border border-gray-200 text-xs rounded p-1 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-600 mb-1">Upload Foto Utama / Banner</label>
+                            <input type="file" id="input-photo" accept="image/*" onchange="handleImageUpload(event, 'prev-photo')" class="w-full border border-gray-200 text-xs rounded p-1 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-600 mb-1">Link Video YouTube (Contoh: https://www.youtube.com/watch?v=XXXXX)</label>
+                            <input type="text" id="input-youtube" oninput="updatePreview()" class="w-full border-gray-300 rounded p-2 text-xs border" placeholder="Kosongkan jika tidak ada video" value="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-sm font-bold text-gray-800 border-b pb-1 mb-3">1. Konten Utama</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs text-gray-600 mb-1">Judul Utama (Headline)</label>
+                            <input type="text" id="input-judul" oninput="updatePreview()" class="w-full border-gray-300 rounded p-2 text-xs border" value="Revolusi Bisnis Anda dengan 3IReborn">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-600 mb-1">Tagline</label>
+                            <input type="text" id="input-tagline" oninput="updatePreview()" class="w-full border-gray-300 rounded p-2 text-xs border" value="NPA SMART SYSTEM V5">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-600 mb-1">Hook (Kalimat Pancingan)</label>
+                            <textarea id="input-hook" oninput="updatePreview()" rows="2" class="w-full border-gray-300 rounded p-2 text-xs border">Tinggalkan Cara Lama! Dapatkan 10x Lipat Prospek Tanpa Harus Pusing Follow-Up Manual. Sistem cerdas ini bekerja 24/7 untuk Anda.</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-sm font-bold text-gray-800 border-b pb-1 mb-3">2. Deskripsi Bisnis</h2>
+                    <textarea id="input-deskripsi" oninput="updatePreview()" rows="4" class="w-full border-gray-300 rounded p-2 text-xs border">NPA SMART SYSTEM V5 adalah sistem terotomatisasi yang dirancang khusus untuk mitra 3IReborn. Sistem ini menyederhanakan proses rekrutmen, edukasi, dan konversi tim Anda. Anda tidak perlu lagi presentasi manual satu per satu, biarkan sistem yang menyaring prospek berkualitas untuk Anda.</textarea>
+                </div>
+
+                <div>
+                    <h2 class="text-sm font-bold text-gray-800 border-b pb-1 mb-3">3. Call To Action (CTA)</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs text-gray-600 mb-1">Teks Tombol WA</label>
+                            <input type="text" id="input-cta-text" oninput="updatePreview()" class="w-full border-gray-300 rounded p-2 text-xs border" value="Ya, Hubungi Saya Sekarang!">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-600 mb-1">Link WhatsApp Aktif</label>
+                            <input type="text" id="input-cta-link" oninput="updatePreview()" class="w-full border-gray-300 rounded p-2 text-xs border" value="https://wa.me/6281234567890">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-sm font-bold text-gray-800 border-b pb-1 mb-2 flex justify-between items-center">
+                        <span>4. Testimoni</span>
+                        <button onclick="addTestimoni()" class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold">+ Tambah</button>
+                    </h2>
+                    <div id="testimoni-list" class="space-y-2"></div>
+                </div>
+
+                <div>
+                    <h2 class="text-sm font-bold text-gray-800 border-b pb-1 mb-2 flex justify-between items-center">
+                        <span>5. FAQ</span>
+                        <button onclick="addFaq()" class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold">+ Tambah</button>
+                    </h2>
+                    <div id="faq-list" class="space-y-2"></div>
+                </div>
+
+                <div>
+                    <h2 class="text-sm font-bold text-gray-800 border-b pb-1 mb-3">6. Media Sosial & Tags</h2>
+                    <div class="space-y-2">
+                        <input type="text" id="input-fb" oninput="updatePreview()" placeholder="Link Facebook" class="w-full border-gray-300 rounded p-1.5 text-xs border">
+                        <input type="text" id="input-ig" oninput="updatePreview()" placeholder="Link Instagram" class="w-full border-gray-300 rounded p-1.5 text-xs border">
+                        <input type="text" id="input-tiktok" oninput="updatePreview()" placeholder="Link TikTok" class="w-full border-gray-300 rounded p-1.5 text-xs border">
+                        <input type="text" id="input-tags" oninput="updatePreview()" placeholder="Tags (pisahkan dengan koma)" class="w-full border-gray-300 rounded p-1.5 text-xs border" value="3IReborn, NPA System, Bisnis Digital">
+                    </div>
+                </div>
+
+                <div class="pb-8"></div>
+            </div>
+        </aside>
+
+        <main class="w-full lg:w-2/3 xl:w-3/4 bg-gray-300 p-2 sm:p-4 flex flex-col h-[55vh] lg:h-full overflow-hidden">
+            <div class="bg-white w-full h-full rounded-xl shadow-xl flex flex-col overflow-hidden border border-gray-400">
+                <div class="bg-gray-100 border-b px-4 py-2 flex items-center justify-between flex-shrink-0">
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                        <span class="ml-2 text-[10px] text-gray-400 font-mono hidden sm:inline">Live Preview Mode</span>
+                    </div>
+                    <div class="text-[11px] bg-white border px-3 py-0.5 rounded-md text-gray-500 truncate max-w-[200px] sm:max-w-xs font-mono">
+                        3ireborn-landingpage.html
+                    </div>
+                </div>
+                
+                <div id="preview-frame" class="flex-1 overflow-y-auto w-full bg-slate-50">
+                    <div id="export-target" style="font-family: 'Poppins', sans-serif;" class="text-gray-800 antialiased bg-slate-50 min-h-screen relative">
                         
-                        <section id="hero-section" class="bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 text-white px-4 sm:px-6 pt-16 pb-24 text-center relative overflow-hidden">
+                        <section id="hero-section" class="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white px-4 sm:px-6 pt-16 pb-24 text-center relative overflow-hidden">
                             <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNmZmYiLz48L3N2Zz4=')]"></div>
                             
                             <div class="max-w-4xl mx-auto relative z-10 flex flex-col items-center">
                                 <img id="prev-logo" src="" alt="Logo" class="hidden max-h-16 mb-6 object-contain drop-shadow-md">
 
-                                <span id="prev-tagline" class="inline-block py-1 px-3 rounded-full bg-blue-700/40 text-blue-200 text-xs font-semibold tracking-wider mb-4 border border-blue-500/30">NPA SMART SYSTEM V5</span>
+                                <span id="prev-tagline" class="inline-block py-1 px-3 rounded-full bg-blue-700/50 text-blue-200 text-xs font-semibold tracking-wider mb-4 border border-blue-500/30">NPA SMART SYSTEM V5</span>
                                 <h1 id="prev-judul" class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">Revolusi Bisnis Anda dengan 3IReborn</h1>
-                                <p id="prev-hook" class="text-sm sm:text-base text-blue-100 mb-8 leading-relaxed max-w-xl mx-auto">Tinggalkan Cara Lama! Dapatkan 10x Lipat Prospek Tanpa Harus Pusing Follow-Up Manual. Sistem cerdas ini bekerja 24/7 untuk Anda.</p>
+                                <p id="prev-hook" class="text-sm sm:text-base text-blue-100 mb-8 leading-relaxed max-w-xl mx-auto">Tinggalkan Cara Lama! Dapatkan 10x Lipat Prospek Tanpa Harus Pusing Follow-Up Manual.</p>
                                 
-                                <a href="https://wa.me/6281234567890" id="prev-cta-1" target="_blank" class="prev-cta-link inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base font-bold py-3.5 px-6 rounded-full shadow-lg transition transform hover:-translate-y-0.5 mb-8">
+                                <a href="#" id="prev-cta-1" target="_blank" class="prev-cta-link inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base font-bold py-3.5 px-6 rounded-full shadow-lg transition transform hover:-translate-y-0.5 mb-8">
                                     <span class="prev-cta-text">Ya, Hubungi Saya Sekarang!</span>
                                 </a>
 
@@ -37,10 +187,10 @@
                         <section class="py-12 px-4 sm:px-6 bg-slate-50">
                             <div class="max-w-3xl mx-auto text-center">
                                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Kenapa Anda Butuh Sistem Ini?</h2>
-                                <p id="prev-deskripsi" class="text-sm sm:text-base text-gray-600 leading-relaxed mb-8 whitespace-pre-line text-left sm:text-center">NPA SMART SYSTEM V5 adalah sistem terotomatisasi yang dirancang khusus untuk mitra 3IReborn. Sistem ini menyederhanakan proses rekrutmen, edukasi, dan konversi tim Anda. Anda tidak perlu lagi presentasi manual satu per satu, biarkan sistem yang menyaring prospek berkualitas untuk Anda.</p>
+                                <p id="prev-deskripsi" class="text-sm sm:text-base text-gray-600 leading-relaxed mb-8 whitespace-pre-line text-left sm:text-center">NPA SMART SYSTEM V5 adalah sistem terotomatisasi yang dirancang khusus untuk mitra 3IReborn.</p>
                                 
-                                <div id="youtube-wrapper" class="w-full max-w-xl mx-auto aspect-video rounded-xl overflow-hidden shadow-lg border border-gray-200">
-                                    <iframe id="prev-youtube-iframe" class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                                <div id="youtube-wrapper" class="hidden w-full max-w-xl mx-auto aspect-video rounded-xl overflow-hidden shadow-lg border border-gray-200">
+                                    <iframe id="prev-youtube-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </section>
@@ -48,38 +198,21 @@
                         <section class="py-12 px-4 sm:px-6 bg-white border-t border-b">
                             <div class="max-w-4xl mx-auto">
                                 <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">Apa Kata Mereka?</h2>
-                                <div id="prev-testimoni-container" class="grid sm:grid-cols-2 gap-6">
-                <div class="bg-slate-50 p-4 rounded-xl border border-gray-100 shadow-sm">
-                    <div class="text-amber-400 text-sm mb-2">★★★★★</div>
-                    <p class="text-xs sm:text-sm italic text-gray-600 mb-3">"Semenjak pakai NPA V5, tim saya berkembang pesat tanpa harus capek prospek offline."</p>
-                    <div class="font-bold text-xs text-gray-800">— Budi Santoso</div>
-                </div>
-            
-                <div class="bg-slate-50 p-4 rounded-xl border border-gray-100 shadow-sm">
-                    <div class="text-amber-400 text-sm mb-2">★★★★★</div>
-                    <p class="text-xs sm:text-sm italic text-gray-600 mb-3">"Sistemnya bekerja otomatis. Prospek yang masuk via WA sudah paham sistem bisnis."</p>
-                    <div class="font-bold text-xs text-gray-800">— Siti Aminah</div>
-                </div>
-            </div>
+                                <div id="prev-testimoni-container" class="grid sm:grid-cols-2 gap-6"></div>
                             </div>
                         </section>
 
                         <section class="py-12 px-4 sm:px-6 bg-slate-50">
                             <div class="max-w-2xl mx-auto">
                                 <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">Pertanyaan Populer</h2>
-                                <div id="prev-faq-container" class="space-y-3">
-                <div class="bg-white border rounded-lg p-3.5 shadow-none text-left">
-                    <h4 class="font-bold text-xs sm:text-sm text-gray-900 mb-1">Apakah sistem ini gratis untuk tim?</h4>
-                    <p class="text-xs text-gray-600">Ya, sistem ini dirancang khusus sebagai fasilitas eksklusif percepatan tim 3IReborn.</p>
-                </div>
-            </div>
+                                <div id="prev-faq-container" class="space-y-3"></div>
                             </div>
                         </section>
 
-                        <section id="bottom-section" class="py-16 px-4 bg-blue-950 text-center text-white relative">
+                        <section id="bottom-section" class="py-16 px-4 bg-blue-900 text-center text-white relative">
                             <div class="max-w-2xl mx-auto relative z-10">
                                 <h2 class="text-xl sm:text-2xl font-bold mb-6">Siap Memulai Langkah Baru Anda?</h2>
-                                <a href="https://wa.me/6281234567890" id="prev-cta-2" target="_blank" class="prev-cta-link inline-block bg-green-500 hover:bg-green-600 text-white text-sm sm:text-base font-bold py-3.5 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
+                                <a href="#" id="prev-cta-2" target="_blank" class="prev-cta-link inline-block bg-green-500 hover:bg-green-600 text-white text-sm sm:text-base font-bold py-3.5 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
                                     <span class="prev-cta-text">Ya, Hubungi Saya Sekarang!</span>
                                 </a>
                             </div>
@@ -87,12 +220,245 @@
 
                         <footer class="bg-gray-900 text-gray-400 py-8 text-center text-xs border-t border-gray-800">
                             <div class="max-w-4xl mx-auto px-4 space-y-4">
-                                <div id="prev-sosmed-box" class="flex justify-center gap-4 text-sm font-semibold text-gray-300"></div>
+                                <div id="prev-sosmed-box" class="flex justify-center gap-4 text-sm font-semibold text-gray-300">
+                                    </div>
                                 <p>© 2026 NPA SMART SYSTEM V5 - 3IReborn. All Rights Reserved.</p>
-                                <div class="flex justify-center flex-wrap gap-1.5 opacity-50" id="prev-tags"><span class="bg-gray-800 px-2 py-0.5 rounded text-[10px]">#3IReborn</span><span class="bg-gray-800 px-2 py-0.5 rounded text-[10px]">#NPA System</span><span class="bg-gray-800 px-2 py-0.5 rounded text-[10px]">#Bisnis Digital</span></div>
+                                <div class="flex justify-center flex-wrap gap-1.5 opacity-50" id="prev-tags"></div>
                             </div>
                         </footer>
 
                     </div>
+                </div>
+            </div>
+        </main>
+    </main>
+
+    <script>
+        // Default Arrays Data
+        let testimonis = [
+            { id: 1, nama: "Budi Santoso", teks: "Semenjak pakai NPA V5, tim saya berkembang pesat tanpa harus capek prospek offline." },
+            { id: 2, nama: "Siti Aminah", teks: "Sistemnya bekerja otomatis. Prospek yang masuk via WA sudah paham sistem bisnis." }
+        ];
+
+        let faqs = [
+            { id: 1, tanya: "Apakah sistem ini gratis untuk tim?", jawab: "Ya, sistem ini dirancang khusus sebagai fasilitas eksklusif percepatan tim 3IReborn." }
+        ];
+
+        // Theme Data Configuration
+        const themes = {
+            blue: {
+                hero: "bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 text-white px-4 sm:px-6 pt-16 pb-24 text-center relative overflow-hidden",
+                tagline: "inline-block py-1 px-3 rounded-full bg-blue-700/40 text-blue-200 text-xs font-semibold tracking-wider mb-4 border border-blue-500/30",
+                cta1: "prev-cta-link inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base font-bold py-3.5 px-6 rounded-full shadow-lg transition transform hover:-translate-y-0.5 mb-8",
+                bottom: "py-16 px-4 bg-blue-950 text-center text-white relative",
+                cta2: "prev-cta-link inline-block bg-green-500 hover:bg-green-600 text-white text-sm sm:text-base font-bold py-3.5 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5",
+                waveColor: "#f8fafc"
+            },
+            green: {
+                hero: "bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-900 text-white px-4 sm:px-6 pt-16 pb-24 text-center relative overflow-hidden",
+                tagline: "inline-block py-1 px-3 rounded-full bg-emerald-700/40 text-emerald-200 text-xs font-semibold tracking-wider mb-4 border border-emerald-500/30",
+                cta1: "prev-cta-link inline-block bg-amber-500 hover:bg-amber-600 text-gray-900 text-sm sm:text-base font-bold py-3.5 px-6 rounded-full shadow-lg transition transform hover:-translate-y-0.5 mb-8",
+                bottom: "py-16 px-4 bg-emerald-950 text-center text-white relative",
+                cta2: "prev-cta-link inline-block bg-teal-500 hover:bg-teal-600 text-white text-sm sm:text-base font-bold py-3.5 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5",
+                waveColor: "#f8fafc"
+            },
+            red: {
+                hero: "bg-gradient-to-br from-red-950 via-red-900 to-rose-900 text-white px-4 sm:px-6 pt-16 pb-24 text-center relative overflow-hidden",
+                tagline: "inline-block py-1 px-3 rounded-full bg-red-700/40 text-rose-200 text-xs font-semibold tracking-wider mb-4 border border-red-500/30",
+                cta1: "prev-cta-link inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-sm sm:text-base font-bold py-3.5 px-6 rounded-full shadow-lg transition transform hover:-translate-y-0.5 mb-8",
+                bottom: "py-16 px-4 bg-red-950 text-center text-white relative",
+                cta2: "prev-cta-link inline-block bg-rose-600 hover:bg-rose-700 text-white text-sm sm:text-base font-bold py-3.5 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5",
+                waveColor: "#f8fafc"
+            },
+            dark: {
+                hero: "bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white px-4 sm:px-6 pt-16 pb-24 text-center relative overflow-hidden",
+                tagline: "inline-block py-1 px-3 rounded-full bg-gray-800 text-gray-300 text-xs font-semibold tracking-wider mb-4 border border-gray-700/30",
+                cta1: "prev-cta-link inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-sm sm:text-base font-bold py-3.5 px-6 rounded-full shadow-lg transition transform hover:-translate-y-0.5 mb-8",
+                bottom: "py-16 px-4 bg-gray-950 text-center text-white relative",
+                cta2: "prev-cta-link inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-sm sm:text-base font-bold py-3.5 px-8 rounded-full shadow-lg transition transform hover:-translate-y-0.5",
+                waveColor: "#f8fafc"
+            }
+        };
+
+        function init() {
+            renderTestimoniInputs();
+            renderFaqInputs();
+            updatePreview();
+        }
+
+        // --- Helper: YouTube Link Converter ---
+        function getYouTubeEmbedUrl(url) {
+            if(!url) return '';
+            let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            let match = url.match(regExp);
+            return (match && match[2].length == 11) ? 'https://www.youtube.com/embed/' + match[2] : '';
+        }
+
+        // --- Core Preview Rendering Logic ---
+        function updatePreview() {
+            // Font & Style
+            const selectedFont = document.getElementById('input-font').value;
+            const targetLP = document.getElementById('export-target');
+            targetLP.style.fontFamily = selectedFont;
+
+            // Basic Input Text bindings
+            document.getElementById('prev-judul').innerText = document.getElementById('input-judul').value;
+            document.getElementById('prev-tagline').innerText = document.getElementById('input-tagline').value;
+            document.getElementById('prev-hook').innerText = document.getElementById('input-hook').value;
+            document.getElementById('prev-deskripsi').innerText = document.getElementById('input-deskripsi').value;
+
+            // CTA setup
+            const txtCTA = document.getElementById('input-cta-text').value;
+            const linkCTA = document.getElementById('input-cta-link').value;
+            document.querySelectorAll('.prev-cta-text').forEach(el => el.innerText = txtCTA);
+            document.querySelectorAll('.prev-cta-link').forEach(el => el.href = linkCTA);
+
+            // YouTube Config
+            const ytUrl = document.getElementById('input-youtube').value;
+            const embedUrl = getYouTubeEmbedUrl(ytUrl);
+            const ytWrapper = document.getElementById('youtube-wrapper');
+            if(embedUrl) {
+                document.getElementById('prev-youtube-iframe').src = embedUrl;
+                ytWrapper.classList.remove('hidden');
+            } else {
+                ytWrapper.classList.add('hidden');
+                document.getElementById('prev-youtube-iframe').src = '';
+            }
+
+            // Theme Wave application
+            const currentTheme = themes[document.getElementById('input-theme').value];
+            document.getElementById('hero-section').className = currentTheme.hero;
+            document.getElementById('prev-tagline').className = currentTheme.tagline;
+            document.getElementById('prev-cta-1').className = currentTheme.cta1;
+            document.getElementById('bottom-section').className = currentTheme.bottom;
+            document.getElementById('prev-cta-2').className = currentTheme.cta2;
+            document.getElementById('theme-wave-path').setAttribute('fill', currentTheme.waveColor);
+
+            // Social Media Setup
+            const fb = document.getElementById('input-fb').value;
+            const ig = document.getElementById('input-ig').value;
+            const tiktok = document.getElementById('input-tiktok').value;
+            let sosmedHtml = '';
+            if(fb) sosmedHtml += `<a href="${fb}" target="_blank" class="hover:underline">Facebook</a>`;
+            if(ig) sosmedHtml += `<a href="${ig}" target="_blank" class="hover:underline">Instagram</a>`;
+            if(tiktok) sosmedHtml += `<a href="${tiktok}" target="_blank" class="hover:underline">TikTok</a>`;
+            document.getElementById('prev-sosmed-box').innerHTML = sosmedHtml;
+
+            // Footer Tags array conversion
+            const rawTags = document.getElementById('input-tags').value;
+            document.getElementById('prev-tags').innerHTML = rawTags.split(',').map(tg => tg.trim() ? `<span class="bg-gray-800 px-2 py-0.5 rounded text-[10px]">#${tg.trim()}</span>` : '').join('');
+
+            // Dynamic elements render
+            renderTestimoniPreview();
+            renderFaqPreview();
+        }
+
+        // --- File Reader Base64 Converter ---
+        function handleImageUpload(event, elementId) {
+            const file = event.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(elementId);
+                    img.src = e.target.result;
+                    img.classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // --- Dynamic Arrays Management ---
+        function addTestimoni() { testimonis.push({ id: Date.now(), nama: "", teks: "" }); renderTestimoniInputs(); updatePreview(); }
+        function removeTestimoni(id) { testimonis = testimonis.filter(t => t.id !== id); renderTestimoniInputs(); updatePreview(); }
+        function updateTstData(id, fld, val) { const i = testimonis.findIndex(t => t.id === id); if(i>-1){ testimonis[i][fld] = val; updatePreview(); } }
+        function renderTestimoniInputs() {
+            document.getElementById('testimoni-list').innerHTML = testimonis.map(t => `
+                <div class="bg-gray-100 p-2 rounded text-xs relative space-y-1 border">
+                    <button onclick="removeTestimoni(${t.id})" class="absolute top-1 right-2 text-red-500 font-bold">✕</button>
+                    <input type="text" placeholder="Nama" oninput="updateTstData(${t.id}, 'nama', this.value)" value="${t.nama}" class="w-full p-1 text-xs border rounded">
+                    <textarea placeholder="Isi Testimoni" oninput="updateTstData(${t.id}, 'teks', this.value)" class="w-full p-1 text-xs border rounded" rows="1">${t.teks}</textarea>
+                </div>
+            `).join('');
+        }
+        function renderTestimoniPreview() {
+            document.getElementById('prev-testimoni-container').innerHTML = testimonis.map(t => `
+                <div class="bg-slate-50 p-4 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+                    <p class="text-xs sm:text-sm italic text-gray-600 mb-3">"${t.teks || '...'}"</p>
+                    <div class="font-bold text-xs text-gray-800">— ${t.nama || 'Mitra 3IReborn'}</div>
+                </div>
+            `).join('');
+        }
+
+        function addFaq() { faqs.push({ id: Date.now(), tanya: "", jawab: "" }); renderFaqInputs(); updatePreview(); }
+        function removeFaq(id) { faqs = faqs.filter(f => f.id !== id); renderFaqInputs(); updatePreview(); }
+        function updateFaqData(id, fld, val) { const i = faqs.findIndex(f => f.id === id); if(i>-1){ faqs[i][fld] = val; updatePreview(); } }
+        function renderFaqInputs() {
+            document.getElementById('faq-list').innerHTML = faqs.map(f => `
+                <div class="bg-gray-100 p-2 rounded text-xs relative space-y-1 border">
+                    <button onclick="removeFaq(${f.id})" class="absolute top-1 right-2 text-red-500 font-bold">✕</button>
+                    <input type="text" placeholder="Pertanyaan" oninput="updateFaqData(${f.id}, 'tanya', this.value)" value="${f.tanya}" class="w-full p-1 text-xs border rounded">
+                    <input type="text" placeholder="Jawaban" oninput="updateFaqData(${f.id}, 'jawab', this.value)" value="${f.jawab}" class="w-full p-1 text-xs border rounded">
+                </div>
+            `).join('');
+        }
+        function renderFaqPreview() {
+            document.getElementById('prev-faq-container').innerHTML = faqs.map(f => `
+                <div class="bg-white border rounded-lg p-3.5 shadow-none text-left">
+                    <h4 class="font-bold text-xs sm:text-sm text-gray-900 mb-1">${f.tanya || 'Pertanyaan?'}</h4>
+                    <p class="text-xs text-gray-600">${f.jawab || '...'}</p>
+                </div>
+            `).join('');
+        }
+
+        // --- Export & Code Generation ---
+        function generatePackagedHTML() {
+            const innerCode = document.getElementById('export-target').outerHTML;
+            const fontStyle = document.getElementById('input-font').value;
+            return `<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${document.getElementById('input-judul').value}</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #f8fafc;">
+    ${innerCode}
+</body>
+</html>`.trim();
+        }
+
+        function exportHTML() {
+            const htmlText = generatePackagedHTML();
+            const blob = new Blob([htmlText], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `landingpage-npa-${Date.now()}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert("File HTML sukses terunduh! Jika di HP terblokir, gunakan fitur 'Salin Kode'.");
+        }
+
+        function copyHTML() {
+            const htmlText = generatePackagedHTML();
+            const el = document.createElement('textarea');
+            el.value = htmlText;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("✅ Kode HTML Berhasil Disalin! Silakan paste langsung ke file index.html di repositori GitHub kamu.");
+        }
+
+        init();
+    </script>
 </body>
 </html>
+
+
+```
