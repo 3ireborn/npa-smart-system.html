@@ -9,196 +9,80 @@
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #061b18; color: white; }
         .font-montserrat { font-family: 'Montserrat', sans-serif; }
-        .scrollbar-hide::-webkit-scrollbar { width: 4px; }
-        .scrollbar-hide::-webkit-scrollbar-track { background: #0a1f1b; }
-        .scrollbar-hide::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
-        
-        .bg-istikmal { background-color: #061b18; }
         .bg-istikmal-light { background-color: #102d28; }
         .bg-istikmal-dark { background-color: #0a1f1b; }
         .text-gold { color: #d4af37; }
         .bg-gold { background-color: #d4af37; }
         .border-gold { border-color: #d4af37; }
-        
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(212, 175, 55, 0.3); }
-        .btn-active:active { transform: translateY(1px); }
     </style>
 </head>
-<body class="bg-istikmal min-h-screen pb-20">
-
-    <header class="bg-istikmal-light border-b border-gold/20 p-4 shadow-md sticky top-0 z-50">
-        <div class="max-w-2xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="bg-gold text-[#061b18] px-2.5 py-1 rounded font-black text-xs shadow-sm">NPA V5</div>
-                <h1 class="font-bold text-sm sm:text-base tracking-tight text-white font-montserrat">Referral Generator</h1>
-            </div>
-            <div class="text-[10px] border border-gold/50 text-gold px-2.5 py-1 rounded-full font-semibold">Istikmal Syariah</div>
-        </div>
-    </header>
+<body class="bg-[#061b18] min-h-screen pb-20">
 
     <main class="max-w-xl mx-auto p-5 mt-4">
-        
         <div class="text-center mb-8">
-            <h1 class="font-montserrat text-3xl font-extrabold text-gold tracking-wide mb-2">ISTIKMAL SYARIAH</h1>
-            <p class="text-sm text-gray-300 font-semibold tracking-widest uppercase">Generator Premium - 3 Funnel</p>
+            <h1 class="font-montserrat text-3xl font-extrabold text-[#d4af37] tracking-wide mb-2">ISTIKMAL SYARIAH</h1>
+            <p class="text-sm text-gray-300 font-semibold tracking-widest uppercase">Generator V7 - Full Karir</p>
         </div>
 
-        <div class="bg-istikmal-light p-6 rounded-2xl shadow-2xl border border-gold/20 space-y-5">
+        <div class="bg-[#102d28] p-6 rounded-2xl shadow-2xl border border-[#d4af37]/20 space-y-5">
             <div>
                 <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Nama Leader</label>
-                <input type="text" id="input-nama" class="w-full bg-istikmal-dark border border-gray-600 rounded-xl p-3.5 text-sm text-white focus:ring-2 focus:ring-gold outline-none" placeholder="Contoh: Sugiarto Kurniawan">
+                <input type="text" id="input-nama" class="w-full bg-[#0a1f1b] border border-gray-600 rounded-xl p-3.5 text-sm text-white focus:ring-2 focus:ring-[#d4af37] outline-none" placeholder="Nama Lengkap">
             </div>
 
             <div>
                 <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Nomor WhatsApp</label>
-                <input type="number" id="input-wa" class="w-full bg-istikmal-dark border border-gray-600 rounded-xl p-3.5 text-sm text-white focus:ring-2 focus:ring-gold outline-none" placeholder="Contoh: 6281234567890">
+                <input type="number" id="input-wa" class="w-full bg-[#0a1f1b] border border-gray-600 rounded-xl p-3.5 text-sm text-white focus:ring-2 focus:ring-[#d4af37] outline-none" placeholder="628xxxxxxxxxx">
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Slug Branding (Akhiran Link)</label>
-                <input type="text" id="input-slug" class="w-full bg-istikmal-dark border border-gray-600 rounded-xl p-3.5 text-sm text-white focus:ring-2 focus:ring-gold outline-none" placeholder="Contoh: pakde-sugiarto">
+                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Slug Branding</label>
+                <input type="text" id="input-slug" class="w-full bg-[#0a1f1b] border border-gray-600 rounded-xl p-3.5 text-sm text-white focus:ring-2 focus:ring-[#d4af37] outline-none" placeholder="NamaBrandAnda">
             </div>
 
             <div>
                 <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Jenjang Karir (Posisi)</label>
-                <select id="input-jabatan" class="w-full bg-istikmal-dark border border-gray-600 rounded-xl p-3.5 text-sm text-white focus:ring-2 focus:ring-gold outline-none appearance-none">
+                <select id="input-jabatan" class="w-full bg-[#0a1f1b] border border-gray-600 rounded-xl p-3.5 text-sm text-white focus:ring-2 focus:ring-[#d4af37] outline-none">
                     <option value="Mitra 3IReborn">Mitra 3IReborn</option>
                     <option value="Team Entrepreneur">Team Entrepreneur</option>
+                    <option value="Leader Entrepreneur">Leader Entrepreneur</option>
                     <option value="Bronze Entrepreneur">Bronze Entrepreneur</option>
                     <option value="Silver Entrepreneur" selected>Silver Entrepreneur</option>
                     <option value="Gold Entrepreneur">Gold Entrepreneur</option>
+                    <option value="Diamond Executive">Diamond Executive</option>
+                    <option value="Royal Executive">Royal Executive</option>
+                    <option value="King Executive">King Executive</option>
+                    <option value="Queen 3IReborn">Queen 3IReborn</option>
                 </select>
             </div>
 
-            <div>
-                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Foto Profil Leader</label>
-                <div class="relative">
-                    <input type="file" id="input-foto" accept="image/*" class="hidden" onchange="handleFotoUpload(event)">
-                    <button onclick="document.getElementById('input-foto').click()" class="w-full bg-teal-700 hover:bg-teal-600 text-white font-bold py-3.5 rounded-xl border border-teal-500 transition flex justify-center items-center gap-2 text-sm">
-                        📸 Pilih Foto dari HP
-                    </button>
-                </div>
-                <div id="preview-container" class="hidden mt-4 flex items-center gap-4 bg-istikmal-dark p-3 rounded-xl border border-gray-600">
-                    <img id="preview-img" src="" class="w-12 h-12 rounded-full object-cover border-2 border-gold">
-                    <span class="text-xs text-gray-300">Foto berhasil dimuat!</span>
-                </div>
-            </div>
-
-            <button onclick="generateData()" class="w-full mt-8 bg-gold hover:bg-yellow-500 text-[#061b18] font-extrabold py-4 rounded-xl shadow-lg transition btn-hover btn-active text-sm uppercase tracking-widest flex justify-center items-center gap-2">
-                🚀 Generate 3 Link Funnel
+            <button onclick="generateData()" class="w-full mt-8 bg-[#d4af37] hover:bg-[#b8962f] text-[#061b18] font-extrabold py-4 rounded-xl shadow-lg transition text-sm uppercase tracking-widest">
+                🚀 GENERATE SEMUA
             </button>
         </div>
 
         <div id="result-box" class="hidden mt-8 space-y-5">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px bg-gold/30 flex-1"></div>
-                <span class="text-[11px] font-bold text-gold uppercase tracking-widest">Senjata Telah Siap</span>
-                <div class="h-px bg-gold/30 flex-1"></div>
-            </div>
-
-            <div class="bg-istikmal-light p-5 rounded-2xl shadow-xl border border-gold/30">
-                <h3 class="font-bold text-white text-sm mb-1 flex items-center gap-2">📘 1. Link LP MASTER</h3>
-                <p class="text-[10px] text-gray-400 mb-3">Gunakan untuk prospek baru (Penjelasan Lengkap)</p>
-                <div id="link-master" class="bg-istikmal-dark text-teal-400 p-3 rounded-lg text-xs font-mono break-all border border-teal-900 mb-3 select-all"></div>
-                <button onclick="salinLink('link-master', this)" class="w-full bg-teal-600 hover:bg-teal-500 text-white text-xs font-bold py-2.5 rounded-lg transition">📋 Copy Master</button>
-            </div>
-
-            <div class="bg-istikmal-light p-5 rounded-2xl shadow-xl border border-orange-500/30">
-                <h3 class="font-bold text-white text-sm mb-1 flex items-center gap-2">🔥 2. Link LP HOT</h3>
-                <p class="text-[10px] text-gray-400 mb-3">Gunakan untuk prospek yang ragu (Testimoni & FOMO)</p>
-                <div id="link-hot" class="bg-istikmal-dark text-orange-400 p-3 rounded-lg text-xs font-mono break-all border border-orange-900 mb-3 select-all"></div>
-                <button onclick="salinLink('link-hot', this)" class="w-full bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold py-2.5 rounded-lg transition">📋 Copy Hot</button>
-            </div>
-
-            <div class="bg-istikmal-light p-5 rounded-2xl shadow-xl border border-rose-500/30">
-                <h3 class="font-bold text-white text-sm mb-1 flex items-center gap-2">📝 3. Link PENDAFTARAN</h3>
-                <p class="text-[10px] text-gray-400 mb-3">Gunakan untuk prospek yang siap join/transfer</p>
-                <div id="link-daftar" class="bg-istikmal-dark text-rose-400 p-3 rounded-lg text-xs font-mono break-all border border-rose-900 mb-3 select-all"></div>
-                <button onclick="salinLink('link-daftar', this)" class="w-full bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold py-2.5 rounded-lg transition">📋 Copy Pendaftaran</button>
-            </div>
-
-            <div class="bg-istikmal-light p-5 rounded-2xl border border-gray-700 text-center mt-6">
-                <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-3">QR Code LP Master</p>
-                <div class="bg-white p-2 rounded-xl inline-block shadow-[0_0_15px_rgba(212,175,55,0.4)]">
-                    <img id="output-qr" src="" alt="QR Code" class="w-32 h-32 object-contain rounded-lg">
+            <div id="link-master" class="hidden"></div>
+            <div id="link-hot" class="hidden"></div>
+            <div id="link-daftar" class="hidden"></div>
+            <div class="bg-[#102d28] p-5 rounded-xl border border-gray-700 text-center">
+                <p class="text-xs text-gray-400 font-bold uppercase mb-3">QR Code LP Master</p>
+                <div class="bg-white p-2 rounded-lg inline-block">
+                    <img id="output-qr" src="" class="w-32 h-32">
                 </div>
             </div>
         </div>
-
     </main>
 
     <script>
-        let fotoDataUrl = "";
-
-        function handleFotoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    fotoDataUrl = e.target.result;
-                    document.getElementById('preview-img').src = fotoDataUrl;
-                    document.getElementById('preview-container').classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
         function generateData() {
-            const nama = document.getElementById('input-nama').value.trim();
-            const slug = document.getElementById('input-slug').value.trim();
-
-            if(!nama || !slug) {
-                alert("Mohon isi Nama dan Slug terlebih dahulu!");
-                return;
-            }
-
-            const cleanSlug = slug.toLowerCase().replace(/\s+/g, '-');
-            
-            // ==========================================
-            // KODE INI SUDAH DISESUAIKAN DENGAN SCREENSHOT REPO GITHUB PAKDE!
-            // ==========================================
-            const baseUrl = "https://3ireborn.github.io/3ireborn-generator-v4/";
-
-            // Generate 3 Links sesuai nama file asli di GitHub Pakde
-            const linkMaster = baseUrl + "index.html?ref=" + cleanSlug; 
-            const linkHot = baseUrl + "lp-hot-v4.html?ref=" + cleanSlug;
-            const linkDaftar = baseUrl + "form-pendaftaran-v4.html?ref=" + cleanSlug;
-
-            document.getElementById('link-master').innerText = linkMaster;
-            document.getElementById('link-hot').innerText = linkHot;
-            document.getElementById('link-daftar').innerText = linkDaftar;
-
-            // Generate QR (Khusus Master)
-            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(linkMaster)}&color=061b18&bgcolor=ffffff`;
+            const slug = document.getElementById('input-slug').value.trim().toLowerCase().replace(/\s+/g, '-');
+            if(!slug) { alert("Isi Slug!"); return; }
+            const base = "https://3ireborn.github.io/3ireborn-generator-v4/";
+            document.getElementById('link-master').innerText = base + "index.html?ref=" + slug;
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(base + "index.html?ref=" + slug)}`;
             document.getElementById('output-qr').src = qrApiUrl;
-
             document.getElementById('result-box').classList.remove('hidden');
-            document.getElementById('result-box').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        async function salinLink(elementId, btn) {
-            const linkText = document.getElementById(elementId).innerText;
-            const originalText = btn.innerHTML;
-            const originalClass = btn.className;
-
-            try {
-                await navigator.clipboard.writeText(linkText);
-                btn.innerHTML = "✅ Tersalin!";
-                btn.className = "w-full bg-green-500 text-white text-xs font-bold py-2.5 rounded-lg transition";
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.className = originalClass;
-                }, 2000);
-            } catch (err) {
-                const textarea = document.createElement("textarea");
-                textarea.value = linkText;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand("copy");
-                document.body.removeChild(textarea);
-                alert("Link berhasil disalin!");
-            }
         }
     </script>
 </body>
