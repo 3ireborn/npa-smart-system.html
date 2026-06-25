@@ -15,6 +15,9 @@
         .prev-html-render badge { display: inline-block; background-color: #3b82f6; color: white; font-size: 11px; padding: 2px 8px; border-radius: 9999px; font-weight: bold; margin-top: 4px; }
         .blob-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation: morph 8s ease-in-out infinite; }
         @keyframes morph { 0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; } 34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; } 67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; } }
+        /* WA Floating Animation */
+        @keyframes pulse-wa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        .wa-floating { animation: pulse-wa 2s infinite; }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col font-sans">
@@ -129,7 +132,7 @@
                     <div class="text-[10px] bg-white border px-2 py-0.5 rounded text-gray-500 truncate font-mono">live-preview.html</div>
                 </div>
                 
-                <div id="preview-frame" class="flex-1 overflow-y-auto w-full bg-slate-50 relative">
+                <div id="preview-frame" class="flex-1 overflow-y-auto w-full bg-slate-50 relative scroll-smooth">
                     <div id="export-target" style="font-family: 'Poppins', sans-serif;" class="text-gray-800 antialiased bg-white min-h-screen relative prev-html-render">
                         
                         <!-- NAVBAR LOGO -->
@@ -154,7 +157,6 @@
                                 <div class="lg:w-1/2 relative flex justify-center mt-8 lg:mt-0 w-full">
                                     <div class="absolute inset-0 blob-shape theme-bg opacity-10 scale-105"></div>
                                     <div class="absolute inset-0 blob-shape theme-bg opacity-20 scale-90 translate-x-4"></div>
-                                    <!-- Foto diatur max lebar 300px dan rasio portrait agar tidak kebesaran -->
                                     <img id="prev-photo" src="" alt="Hero Image" class="hidden relative z-10 w-full max-w-[260px] lg:max-w-[320px] rounded-2xl shadow-2xl object-cover aspect-[3/4] border-4 border-white">
                                 </div>
                             </div>
@@ -247,6 +249,12 @@
                             </div>
                         </footer>
 
+                        <!-- FLOATING WHATSAPP BUTTON (FITUR BARU) -->
+                        <a href="#" id="prev-wa-float" target="_blank" class="wa-floating fixed bottom-6 right-6 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-50 hover:scale-110 transition-transform duration-300">
+                            <!-- SVG Ikon WhatsApp -->
+                            <svg viewBox="0 0 24 24" class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -322,11 +330,12 @@
             document.getElementById('prev-about').innerText = document.getElementById('input-about').value;
             document.getElementById('prev-disclaimer').innerText = document.getElementById('input-disclaimer').value;
 
-            // Apply CTA
+            // Apply CTA (Including WA Floating)
             const txtCTA = document.getElementById('input-cta-text').value;
             const linkCTA = document.getElementById('input-cta-link').value;
             document.querySelectorAll('.prev-cta-text').forEach(el => el.innerText = txtCTA);
             document.querySelectorAll('.prev-cta-link').forEach(el => el.href = linkCTA);
+            document.getElementById('prev-wa-float').href = linkCTA; // WA float takes linkCTA
 
             // Apply YouTube
             const ytUrl = getYouTubeEmbedUrl(document.getElementById('input-youtube').value);
@@ -390,7 +399,7 @@
         // Export System
         function generateHTML() {
             const innerCode = document.getElementById('export-target').outerHTML;
-            return `<!DOCTYPE html>\n<html lang="id">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>${document.getElementById('input-judul').value.replace(/<[^>]*>/g, '')}</title>\n<script src="https://cdn.tailwindcss.com"><\/script>\n<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">\n<style>.prev-html-render s { color: #ff4d4d; text-decoration: line-through; font-weight: normal; margin-right: 4px; } .prev-html-render badge { display: inline-block; background-color: #3b82f6; color: white; font-size: 11px; padding: 2px 8px; border-radius: 9999px; font-weight: bold; margin-top: 4px; } .blob-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation: morph 8s ease-in-out infinite; } @keyframes morph { 0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; } 34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; } 67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; } }</style>\n</head>\n<body style="background-color: #f8fafc; margin:0; padding:0;">\n${innerCode}\n</body>\n</html>`;
+            return `<!DOCTYPE html>\n<html lang="id">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>${document.getElementById('input-judul').value.replace(/<[^>]*>/g, '')}</title>\n<script src="https://cdn.tailwindcss.com"><\/script>\n<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">\n<style>.prev-html-render s { color: #ff4d4d; text-decoration: line-through; font-weight: normal; margin-right: 4px; } .prev-html-render badge { display: inline-block; background-color: #3b82f6; color: white; font-size: 11px; padding: 2px 8px; border-radius: 9999px; font-weight: bold; margin-top: 4px; } .blob-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation: morph 8s ease-in-out infinite; } @keyframes morph { 0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; } 34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; } 67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; } } @keyframes pulse-wa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } } .wa-floating { animation: pulse-wa 2s infinite; }</style>\n</head>\n<body style="background-color: #f8fafc; margin:0; padding:0;">\n${innerCode}\n</body>\n</html>`;
         }
 
         function exportHTML() {
