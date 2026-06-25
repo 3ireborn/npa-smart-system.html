@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NPA SMART SYSTEM - Super Prompt FB AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        .scrollbar-hide::-webkit-scrollbar { width: 4px; }
+        .scrollbar-hide::-webkit-scrollbar-track { background: #f1f1f1; }
+        .scrollbar-hide::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .btn-pulse { animation: shadow-pulse 2s infinite; }
+        @keyframes shadow-pulse { 0% { box-shadow: 0 0 0 0px rgba(59, 130, 246, 0.5); } 100% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); } }
+    </style>
+</head>
+<body class="text-gray-800 pb-20">
+
+    <!-- HEADER -->
+    <header class="bg-blue-900 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-500 text-white px-2 py-1 rounded font-black text-xs shadow-sm">NPA V5</div>
+                <h1 class="font-bold text-sm sm:text-base tracking-tight">Super Prompt FB Content</h1>
+            </div>
+            <div class="text-[10px] bg-white/20 px-2 py-1 rounded-full font-semibold">AI Assistant Connector</div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-4 mt-2">
+        
+        <!-- PANDUAN -->
+        <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl mb-6 text-xs sm:text-sm text-blue-800 leading-relaxed shadow-sm">
+            🧠 <b>Cara Cerdas Pakai AI:</b> Isi data penawaran Anda di bawah, sistem akan meracik <b>Instruksi Khusus (Super Prompt)</b>. Salin prompt tersebut, lalu paste ke Gemini atau ChatGPT untuk hasilkan ratusan konten unik tanpa batas!
+        </div>
+
+        <!-- FORM INPUT DATA -->
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 mb-6">
+            <h2 class="text-sm font-bold text-gray-900 mb-4 border-b pb-2 flex items-center gap-2">
+                <span>📝 Variabel Bisnis Anda</span>
+            </h2>
+            
+            <div class="space-y-4">
+                <!-- 1. Target Audience -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">1. Siapa Target Marketnya?</label>
+                    <input type="text" id="in-target" oninput="generatePrompt()" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none" value="Karyawan Swasta & Orang Gaptek">
+                </div>
+
+                <!-- 2. Masalah -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">2. Apa Masalah Utama Mereka?</label>
+                    <input type="text" id="in-masalah" oninput="generatePrompt()" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none" value="Tiap bulan gaji cuma numpang lewat dan susah ngajak orang bisnis">
+                </div>
+
+                <!-- 3. Solusi / Nama Produk -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">3. Nama Bisnis / Sistem Anda</label>
+                    <input type="text" id="in-produk" oninput="generatePrompt()" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm font-bold text-blue-700 outline-none" value="Sistem 3IReborn & NPA V5">
+                </div>
+
+                <!-- 4. Benefit Solusi -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">4. Apa Solusi / Keuntungannya?</label>
+                    <input type="text" id="in-solusi" oninput="generatePrompt()" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none" value="Bisa dapat prospek otomatis 24 jam tanpa perlu follow up manual">
+                </div>
+
+                <!-- 5. CTA Link -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">5. Link WhatsApp / Tujuan</label>
+                    <input type="text" id="in-cta" oninput="generatePrompt()" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none" value="https://wa.me/6281234567890">
+                </div>
+
+                <!-- 6. Gaya Bahasa -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">6. Pilih Gaya Bahasa (Mood Konten)</label>
+                    <select id="in-gaya" onchange="generatePrompt()" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm bg-blue-50 text-blue-800 font-semibold focus:ring-2 outline-none">
+                        <option value="Storytelling yang emosional, menyentuh hati, seolah sedang curhat dari hati ke hati.">📖 Gaya Curhat / Storytelling Emosional</option>
+                        <option value="Edukasi yang logis, berwibawa, membuka wawasan (mind-blowing), namun tetap santai.">💡 Gaya Edukasi / Mentor Bisnis</option>
+                        <option value="Hard selling yang menggigit, blak-blakan, menciptakan rasa FOMO (takut ketinggalan) dan sangat persuasif.">🔥 Gaya Hard Selling / Promo Menggigit</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             OUTPUT HASIL PROMPT RAHASIA
+        =========================================== -->
+        <div class="bg-gray-900 rounded-2xl shadow-xl overflow-hidden mb-6 border-2 border-blue-500 relative">
+            <div class="bg-black/40 border-b border-gray-700 p-3 flex justify-between items-center">
+                <h3 class="font-bold text-blue-400 text-sm flex items-center gap-2">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    Naskah Super Prompt
+                </h3>
+                <span class="text-[9px] bg-blue-600 text-white px-2 py-0.5 rounded-full animate-pulse">Siap Disalin</span>
+            </div>
+            
+            <div class="p-4 relative">
+                <!-- Kotak Teks Prompt (Readonly) -->
+                <textarea id="output-prompt" readonly class="w-full h-64 bg-transparent text-gray-300 text-[11px] sm:text-xs font-mono leading-relaxed outline-none resize-none scrollbar-hide"></textarea>
+            </div>
+        </div>
+
+        <!-- TOMBOL AKSI COPY & BUKA AI -->
+        <div class="grid grid-cols-2 gap-3">
+            <button onclick="salinDanBuka('gemini')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:-translate-y-1 text-xs sm:text-sm flex flex-col items-center justify-center gap-1 btn-pulse" id="btn-gemini">
+                <span>1️⃣ Salin & Buka Gemini</span>
+                <span class="text-[9px] font-normal opacity-80">(Gratis & Pintar)</span>
+            </button>
+
+            <button onclick="salinDanBuka('chatgpt')" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:-translate-y-1 text-xs sm:text-sm flex flex-col items-center justify-center gap-1" id="btn-chatgpt">
+                <span>2️⃣ Salin & Buka ChatGPT</span>
+                <span class="text-[9px] font-normal opacity-80">(Populer & Cepat)</span>
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        // FUNGSI MERACIK SUPER PROMPT
+        function generatePrompt() {
+            const target = document.getElementById('in-target').value || "[Target Market]";
+            const masalah = document.getElementById('in-masalah').value || "[Masalah Mereka]";
+            const produk = document.getElementById('in-produk').value || "[Nama Bisnis]";
+            const solusi = document.getElementById('in-solusi').value || "[Keuntungan]";
+            const cta = document.getElementById('in-cta').value || "[Link]";
+            const gaya = document.getElementById('in-gaya').value;
+
+            const superPrompt = `Tugasmu: Bertindaklah sebagai Expert Copywriter Spesialis Facebook Marketing kelas dunia. 
+Buatkan saya 1 draft postingan Facebook yang dirancang khusus untuk viral dan menghasilkan interaksi (komen/inbox) yang masif.
+
+WAJIB gunakan STRICT FORMULA berikut secara berurutan dan buatlah pembatas yang tak terlihat namun terasa alurnya:
+1. HOOK: Kalimat pertama yang sangat memancing rasa penasaran atau emosi (scroll-stopper). Jangan pernah mulai dengan ucapan salam formal.
+2. MASALAH: Sentuh rasa sakit (pain point) atau kegelisahan yang dialami target market.
+3. SOLUSI: Berikan jalan keluar yang logis dengan memperkenalkan sistem/produk saya secara elegan.
+4. CTA (Call To Action): Arahkan mereka untuk bertindak SEKARANG JUGA dengan menyertakan link tujuan.
+5. TAG: Berikan 5 hashtag yang paling relevan.
+
+Berikut adalah data inti bisnis saya:
+- Target Market: ${target}
+- Masalah Utama Mereka: ${masalah}
+- Nama Sistem/Produk: ${produk}
+- Benefit Unggulan: ${solusi}
+- Link Tujuan (CTA): ${cta}
+
+Instruksi Gaya Bahasa:
+Tuliskan konten ini dengan gaya: ${gaya}
+Gunakan bahasa Indonesia yang luwes, natural seperti manusia asyik ngobrol, tidak kaku seperti robot, dan gunakan emoji secara proporsional. 
+
+Jangan mengulangi instruksi ini dalam jawabanmu. Langsung berikan hasil konten terbaikmu!`;
+
+            // Masukkan ke dalam textarea
+            document.getElementById('output-prompt').value = superPrompt;
+        }
+
+        // FUNGSI COPY DAN BUKA TAB BARU
+        async function salinDanBuka(platform) {
+            const promptText = document.getElementById('output-prompt').value;
+            const btnGemini = document.getElementById('btn-gemini');
+            const btnChatGPT = document.getElementById('btn-chatgpt');
+
+            // Copy to clipboard
+            try {
+                await navigator.clipboard.writeText(promptText);
+            } catch (err) {
+                // Fallback
+                const textarea = document.createElement("textarea");
+                textarea.value = promptText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+            }
+
+            // Visual Feedback
+            alert("✅ Super Prompt berhasil disalin! Otomatis membuka aplikasi AI...");
+
+            // Buka Link di Tab Baru
+            if (platform === 'gemini') {
+                window.open('https://gemini.google.com/app', '_blank');
+            } else if (platform === 'chatgpt') {
+                window.open('https://chatgpt.com', '_blank');
+            }
+        }
+
+        // Jalankan sekali saat web pertama dibuka
+        generatePrompt();
+    </script>
+</body>
+</html>
