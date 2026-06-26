@@ -3,111 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPA Landing Page Builder</title>
+    <title>Program Istikmal Syariah - Umroh</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; }
-    </style>
-</head>
-<body class="bg-slate-950 text-white min-h-screen">
-
-<div class="max-w-xl mx-auto p-4">
-    <h1 class="text-3xl font-black text-center text-amber-400 mb-8">NPA LANDING BUILDER V12</h1>
-
-    <div class="space-y-6 bg-slate-900 p-6 rounded-3xl">
-        <!-- Pilih Template -->
-        <div>
-            <label class="block text-amber-400 text-sm font-bold mb-2">Pilih Template</label>
-            <select id="template" class="w-full p-4 rounded-2xl bg-slate-800 text-white">
-                <option value="istikmal">Istikmal Syariah - Umroh</option>
-            </select>
-        </div>
-
-        <button onclick="generateLanding()" 
-                class="w-full bg-emerald-600 hover:bg-emerald-500 py-4 rounded-2xl font-black text-lg">
-            ✨ GENERATE LANDING PAGE
-        </button>
-
-        <div id="result" class="hidden space-y-4 pt-4 border-t border-slate-700">
-            <div class="text-emerald-400 text-center font-bold">✅ Berhasil Dibuat!</div>
-            <div class="grid grid-cols-2 gap-4">
-                <button onclick="copyCode()" class="bg-emerald-600 py-4 rounded-2xl font-bold">📋 Salin Kode</button>
-                <button onclick="downloadCode()" class="bg-blue-600 py-4 rounded-2xl font-bold">⬇️ Download HTML</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    let finalCode = "";
-
-    function generateLanding() {
-        const nama = "Sugiarto Kurniawan";
-        const wa = "6285218453131";
-        
-        finalCode = `<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program Istikmal Syariah - Umroh</title>
-    <script src="https://cdn.tailwindcss.com"><\/script>
-    <style>
         body { font-family: system-ui, sans-serif; }
+        .hero-img { max-height: 420px; object-fit: cover; }
     </style>
 </head>
 <body class="bg-[#0f172a] text-white min-h-screen">
-    <div class="max-w-md mx-auto p-5 pt-10 text-center">
+    <div class="max-w-md mx-auto p-5 pt-8 text-center">
         
-        <p class="text-amber-400 text-sm font-bold tracking-widest mb-3">UMROH ITU PANGGILAN JIWA, BUKAN TENTANG MENUNGGU KAYA! 🕋</p>
-        
-        <h1 class="text-3xl font-black leading-tight mb-6">Program Istikmal Syariah: Solusi Pasti Berangkat Ke Tanah Suci</h1>
-        
-        <!-- GANTI FOTO INI DENGAN LINK FOTO KAMU -->
-        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-             class="w-full rounded-3xl shadow-2xl mb-8" alt="Umroh">
-        
-        <p class="text-slate-300 leading-relaxed text-[15.5px] mb-8">
+        <!-- Hook -->
+        <p class="text-amber-400 text-sm font-bold tracking-[2px] mb-4">
+            UMROH ITU PANGGILAN JIWA, BUKAN TENTANG MENUNGGU KAYA! 🕋
+        </p>
+
+        <!-- Judul -->
+        <h1 class="text-3xl font-black leading-tight mb-6">
+            Program Istikmal Syariah:<br>
+            Solusi Pasti Berangkat Ke Tanah Suci
+        </h1>
+
+        <!-- HERO IMAGE - GANTI DENGAN FOTO KAMU -->
+        <div class="my-6">
+            <img src="https://images.unsplash.com/photo-1583321500900-9f5c3b6c8e0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 class="hero-img w-full rounded-3xl shadow-2xl border border-amber-500/30" 
+                 alt="Umroh">
+        </div>
+
+        <!-- Deskripsi -->
+        <p class="text-slate-300 leading-relaxed text-[15.2px] mb-10 px-2">
             Sistem cerdas penjamin keuangan keluarga: Sisihkan, bukan sisakan! Kami sulap uang rokok/kopi harian Anda menjadi tiket resmi menuju Makkah melalui ekosistem investasi yang amanah dan transparan.
         </p>
-        
-        <a href="https://wa.me/${wa}?text=Halo%20${nama}%2C%20saya%20tertarik%20program%20Istikmal%20Syariah" 
-           class="block w-full bg-amber-500 text-slate-950 font-black py-5 rounded-2xl text-lg shadow-xl">
+
+        <!-- Tombol WA -->
+        <a href="https://wa.me/6285218453131?text=Halo%20Sugiarto%20Kurniawan,%20saya%20tertarik%20dengan%20Program%20Istikmal%20Syariah" 
+           class="block w-full bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black py-5 rounded-2xl text-xl shadow-2xl mb-8">
             HUBUNGI SAYA SEKARANG
         </a>
-        
-        <div class="mt-10 text-xs text-slate-400">
-            <p class="font-bold">${nama}</p>
-            <p>Nganggur Preneur Akademi</p>
+
+        <!-- Mentor -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-sm">
+            <p class="text-slate-400">Konsultan Resmi & Mentor</p>
+            <p class="font-bold text-lg mt-1">Sugiarto Kurniawan</p>
+            <p class="text-amber-400 text-xs mt-3">Nganggur Preneur Akademi</p>
+        </div>
+
+        <div class="text-[10px] text-slate-500 mt-12">
+            © 2026 Nganggur Preneur Akademi • All Rights Reserved
         </div>
     </div>
-</body>
-</html>`;
-
-        document.getElementById("result").classList.remove("hidden");
-        alert("✅ Landing Page berhasil dibuat!");
-    }
-
-    function copyCode() {
-        if (!finalCode) return alert("Generate dulu!");
-        const ta = document.createElement("textarea");
-        ta.value = finalCode;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        alert("✅ Kode berhasil disalin ke clipboard!");
-    }
-
-    function downloadCode() {
-        if (!finalCode) return alert("Generate dulu!");
-        const blob = new Blob([finalCode], { type: "text/html" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "landing-istikmal.html";
-        link.click();
-        alert("✅ File berhasil di-download. Upload ke Netlify!");
-    }
-</script>
 </body>
 </html>
