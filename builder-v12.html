@@ -92,7 +92,7 @@
                         </div>
                         <div>
                             <label class="block text-[10px] text-slate-400 mb-1">Warna Teks</label>
-                            <input type="color" id="c-hook" class="w-full h-8 rounded cursor-pointer" value="#fbbf24" onchange="autoCompile()">
+                            <input type="color" id="c-hook" class="w-full h-8 rounded cursor-pointer" value="#38bdf8" onchange="autoCompile()">
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,6 @@
 
         let outputCode = "";
 
-        // Fungsi Tombol Generate AI
         function suntikTemplateAI() {
             const objek = document.getElementById('pilihan-objek').value;
             const data = databaseAI[objek];
@@ -200,16 +199,11 @@
                 document.getElementById('t-hook').value = data.hook;
                 document.getElementById('t-judul').value = data.judul;
                 document.getElementById('t-deskripsi').value = data.deskripsi;
-                
-                // Langsung jalankan kompilasi otomatis tanpa nunggu
                 autoCompile();
-                
-                // Scroll ke tombol download biar langsung kelihatan canggihnya
                 document.getElementById('result-box').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        // FUNGSI INTI: AUTO-COMPILE REALTIME (SERBA OTOMATIS)
         function autoCompile() {
             const nama = document.getElementById('l-nama').value;
             const wa = document.getElementById('l-wa').value;
@@ -227,55 +221,60 @@
             const bgWeb = document.getElementById('c-bg').value;
             const btnColor = document.getElementById('c-btn').value;
 
-            // Jika belum di-generate atau kosong, sembunyikan kotak unduh
             if(!hook && !judul && !desk) {
                 document.getElementById('result-box').classList.add('hidden');
                 return;
             }
 
-            // Racik struktur kode secara langsung di memori
+            // PERBAIKAN: VARIABEL LANGSUNG MASUK TANPA BACKSLASH, PLUS HERO IMAGE!
             outputCode = `<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>\${judul}</title>
+    <title>${judul}</title>
     <script src="https://cdn.tailwindcss.com"></` + `script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600;700&family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: \${bgWeb}; color: white;" class="min-h-screen flex flex-col items-center p-5 pt-12 pb-24">
-    <div class="max-w-md w-full text-center space-y-8">
+<body style="background-color: ${bgWeb}; color: white;" class="min-h-screen flex flex-col items-center p-5 pt-12 pb-24 relative overflow-hidden">
+    
+    <div class="max-w-md w-full text-center space-y-6 relative z-10">
         
-        <p style="font-family: \${fHook}; color: \${cHook};" class="text-xs font-black uppercase tracking-widest px-2 leading-relaxed">
-            \${hook}
+        <p style="font-family: ${fHook}; color: ${cHook};" class="text-xs font-black uppercase tracking-widest px-2 leading-relaxed">
+            ${hook}
         </p>
 
-        <h1 style="font-family: \${fJudul}; color: \${cJudul};" class="text-2xl sm:text-3xl font-black leading-tight tracking-tight">
-            \${judul}
+        <h1 style="font-family: ${fJudul}; color: ${cJudul};" class="text-2xl sm:text-3xl font-black leading-tight tracking-tight px-2">
+            ${judul}
         </h1>
 
-        <p style="font-family: \${fDesk}; color: \${cDesk};" class="text-sm leading-relaxed text-justify sm:text-center px-2">
-            \${desk}
+        <div class="relative w-full flex justify-center items-center my-6">
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-slate-200 rounded-full blur-[40px] opacity-20 -z-10"></div>
+            <img src="pakde.png" alt="Hero Banner" class="relative z-10 w-full h-auto rounded-3xl border-2 border-slate-800 shadow-2xl object-cover max-h-64" onerror="this.src='https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=800&q=80'">
+        </div>
+
+        <p style="font-family: ${fDesk}; color: ${cDesk};" class="text-sm leading-relaxed text-justify sm:text-center px-4">
+            ${desk}
         </p>
 
-        <div class="pt-4">
-            <a href="https://wa.me/\${wa}?text=Halo%20\${encodeURIComponent(nama)},%20saya%20tertarik%20ingin%20tahu%20lebih%20lanjut%20mengenai%20peluang%20ini." 
-               style="background-color: \${btnColor};" 
-               class="block w-full text-slate-950 font-black py-4 rounded-xl shadow-lg transition tracking-wider uppercase text-sm">
+        <div class="pt-6 px-2">
+            <a href="https://wa.me/${wa}?text=Halo%20${encodeURIComponent(nama)},%20saya%20tertarik%20ingin%20tahu%20lebih%20lanjut%20mengenai%20peluang%20ini." 
+               style="background-color: ${btnColor};" 
+               class="block w-full text-slate-950 font-black py-4 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition tracking-wider uppercase text-sm">
                 Pelajari Solusinya Sekarang ➔
             </a>
         </div>
 
-        <div class="bg-white/5 border border-white/10 p-4 rounded-xl text-xs text-left">
+        <div class="bg-white/5 border border-white/10 p-5 rounded-2xl text-xs text-left mt-8 mx-2 shadow-inner">
             <span class="text-slate-400 block mb-1">Konsultan Resmi & Mentor Pembimbing:</span>
-            <span class="text-sm font-bold text-white block">\${nama}</span>
-            <span class="text-[10px] text-amber-400 font-semibold uppercase tracking-widest">Under Nganggur Preneur Akademi</span>
+            <span class="text-base font-bold text-white block">${nama}</span>
+            <span class="text-[10px] text-amber-400 font-semibold uppercase tracking-widest mt-1 block">Under Nganggur Preneur Akademi</span>
         </div>
 
-        <div class="pt-6 border-t border-white/10 text-justify text-[10px] text-slate-400 leading-relaxed space-y-3">
+        <div class="pt-6 border-t border-white/10 text-justify text-[10px] text-slate-400 leading-relaxed space-y-4 px-2">
             <p><b>Disclaimer:</b> Hasil yang diperoleh setiap individu dapat berbeda-beda tergantung pada komitmen, kerja keras, dan kepatuhan dalam menjalankan sistem edukasi resmi yang telah ditetapkan oleh manajemen.</p>
             
-            <div class="pt-2 text-center border-t border-white/5 space-y-1">
+            <div class="pt-4 text-center border-t border-white/5 space-y-1">
                 <p style="color: #94a3b8 !important;" class="font-bold text-[11px] tracking-wide">© 2026 Nganggur Preneur Akademi. All Rights Reserved.</p>
                 <p style="color: #fbbf24 !important;" class="font-bold text-[10px] tracking-widest uppercase">#NganggurAjaBisa #DisabilitasPunyaKarya</p>
             </div>
@@ -285,7 +284,6 @@
 </body>
 </html>`;
 
-            // Tampilkan kotak download secara instant
             document.getElementById('result-box').classList.remove('hidden');
         }
 
