@@ -20,7 +20,7 @@
                 <div class="bg-amber-500 text-slate-950 px-2.5 py-1 rounded font-black text-xs shadow-md animate-pulse">NPA V12</div>
                 <h1 class="font-bold text-sm sm:text-base tracking-tight text-white">SaaS Auto-Pilot Builder</h1>
             </div>
-            <div class="text-[10px] bg-slate-800 border border-emerald-500/50 text-emerald-400 px-2.5 py-1 rounded-full font-bold">Base64 Injector Ready</div>
+            <div class="text-[10px] bg-slate-800 border border-emerald-500/50 text-emerald-400 px-2.5 py-1 rounded-full font-bold">Base64 & Clipboard Active</div>
         </div>
     </header>
 
@@ -54,9 +54,15 @@
 
             <div id="result-box" class="hidden bg-slate-950 p-4 rounded-xl border-2 border-emerald-500/30 text-center space-y-3 shadow-inner">
                 <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block">✓ Kode Selesai Dimasak Otomatis!</span>
-                <button onclick="unduhHasilKoding()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-black px-6 py-3 rounded-xl transition tracking-wider uppercase shadow-md w-full animate-bounce">
-                    ⬇️ Download file index.html Anda
-                </button>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                    <button onclick="salinKeClipboard()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black px-4 py-3.5 rounded-xl transition tracking-wider uppercase shadow-md flex items-center justify-center gap-2">
+                        📋 Salin Kode HTML Langsung
+                    </button>
+                    <button onclick="unduhHasilKoding()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-black px-4 py-3.5 rounded-xl transition tracking-wider uppercase shadow-md">
+                        ⬇️ Download File index.html
+                    </button>
+                </div>
                 <p class="text-[9px] text-slate-500 italic">Kodingan otomatis ter-update tiap kali Anda melakukan perubahan di bawah.</p>
             </div>
 
@@ -199,19 +205,16 @@
         };
 
         let outputCode = "";
-        
-        // Default gambar awal jika user belum upload (Pakai link standar dari unsplash agar LP tetap cantik)
-        let gambarBase64 = "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+        let gambarBase64 = "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=800&q=80";
 
-        // Fungsi mengubah foto jadi Base64 (Teks Panjang)
         function prosesFotoBase64(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    gambarBase64 = e.target.result; // Menyimpan data Base64
-                    autoCompile(); // Update kode secara otomatis setelah foto dimuat
-                    alert("✅ Foto berhasil dilebur menjadi kode! Silakan Download.");
+                    gambarBase64 = e.target.result;
+                    autoCompile();
+                    alert("✅ Foto berhasil dilebur menjadi kode! Silakan klik tombol 'Salin Kode' atau 'Download'.");
                 };
                 reader.readAsDataURL(file);
             }
@@ -261,54 +264,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600;700&family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 </head>
 <body style="background-color: ${bgWeb}; color: white;" class="min-h-screen flex flex-col items-center p-5 pt-12 pb-24 relative overflow-hidden">
-    
     <div class="max-w-md w-full text-center space-y-6 relative z-10">
-        
-        <p style="font-family: ${fHook}; color: ${cHook};" class="text-xs font-black uppercase tracking-widest px-2 leading-relaxed">
-            ${hook}
-        </p>
-
-        <h1 style="font-family: ${fJudul}; color: ${cJudul};" class="text-2xl sm:text-3xl font-black leading-tight tracking-tight px-2">
-            ${judul}
-        </h1>
-
+        <p style="font-family: ${fHook}; color: ${cHook};" class="text-xs font-black uppercase tracking-widest px-2 leading-relaxed">${hook}</p>
+        <h1 style="font-family: ${fJudul}; color: ${cJudul};" class="text-2xl sm:text-3xl font-black leading-tight tracking-tight px-2">${judul}</h1>
         <div class="relative w-full flex justify-center items-center my-6">
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-slate-200 rounded-full blur-[40px] opacity-20 -z-10"></div>
             <img src="${gambarBase64}" alt="Hero Banner" class="relative z-10 w-full h-auto rounded-3xl border-2 border-slate-800 shadow-2xl object-cover max-h-64">
         </div>
-
-        <p style="font-family: ${fDesk}; color: ${cDesk};" class="text-sm leading-relaxed text-justify sm:text-center px-4">
-            ${desk}
-        </p>
-
+        <p style="font-family: ${fDesk}; color: ${cDesk};" class="text-sm leading-relaxed text-justify sm:text-center px-4">${desk}</p>
         <div class="pt-6 px-2">
-            <a href="https://wa.me/${wa}?text=Halo%20${encodeURIComponent(nama)},%20saya%20tertarik%20ingin%20tahu%20lebih%20lanjut%20mengenai%20peluang%20ini." 
-               style="background-color: ${btnColor};" 
-               class="block w-full text-slate-950 font-black py-4 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition tracking-wider uppercase text-sm">
-                Pelajari Solusinya Sekarang ➔
-            </a>
+            <a href="https://wa.me/${wa}?text=Halo%20${encodeURIComponent(nama)},%20saya%20tertarik%20ingin%20tahu%20lebih%20lanjut%20mengenai%20peluang%20ini." style="background-color: ${btnColor};" class="block w-full text-slate-950 font-black py-4 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition tracking-wider uppercase text-sm">Pelajari Solusinya Sekarang ➔</a>
         </div>
-
         <div class="bg-white/5 border border-white/10 p-5 rounded-2xl text-xs text-left mt-8 mx-2 shadow-inner">
             <span class="text-slate-400 block mb-1">Konsultan Resmi & Mentor Pembimbing:</span>
             <span class="text-base font-bold text-white block">${nama}</span>
             <span class="text-[10px] text-amber-400 font-semibold uppercase tracking-widest mt-1 block">Under Nganggur Preneur Akademi</span>
         </div>
-
         <div class="pt-6 border-t border-white/10 text-justify text-[10px] text-slate-400 leading-relaxed space-y-4 px-2">
             <p><b>Disclaimer:</b> Hasil yang diperoleh setiap individu dapat berbeda-beda tergantung pada komitmen, kerja keras, dan kepatuhan dalam menjalankan sistem edukasi resmi yang telah ditetapkan oleh manajemen.</p>
-            
             <div class="pt-4 text-center border-t border-white/5 space-y-1">
                 <p style="color: #94a3b8 !important;" class="font-bold text-[11px] tracking-wide">© 2026 Nganggur Preneur Akademi. All Rights Reserved.</p>
                 <p style="color: #fbbf24 !important;" class="font-bold text-[10px] tracking-widest uppercase">#NganggurAjaBisa #DisabilitasPunyaKarya</p>
             </div>
         </div>
-
     </div>
 </body>
 </html>`;
 
             document.getElementById('result-box').classList.remove('hidden');
+        }
+
+        // FITUR BARU: SALIN KODE UTANPA COPY MANUAL
+        function salinKeClipboard() {
+            if(!outputCode) {
+                alert("⚠️ Isi teks belum di-generate!");
+                return;
+            }
+            navigator.clipboard.writeText(outputCode).then(() => {
+                alert("📋 KODE SELESAI DISALIN! Sekarang Pakde tinggal meluncur ke GitHub, buat file baru (misal: umroh.html), lalu tinggal tempel/paste kodenya di sana. Mantap!");
+            }).catch(err => {
+                alert("Waduh browser HP memblokir fitur salin otomatis. Pakde terpaksa gunakan tombol download ya.");
+            });
         }
 
         function unduhHasilKoding() {
