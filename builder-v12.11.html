@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NPA SMART SYSTEM V12.11 - Copywriting Integration</title>
+    <title>NPA SMART SYSTEM V12.12 - Copywriting Integration</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600;700&family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -17,10 +17,10 @@
     <header class="bg-slate-900 border-b border-emerald-500/20 p-4 shadow-xl sticky top-0 z-50">
         <div class="max-w-2xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="bg-emerald-500 text-slate-950 px-2.5 py-1 rounded font-black text-xs shadow-md animate-pulse">NPA V12.11</div>
+                <div class="bg-emerald-500 text-slate-950 px-2.5 py-1 rounded font-black text-xs shadow-md animate-pulse">NPA V12.12</div>
                 <h1 class="font-bold text-sm sm:text-base tracking-tight text-white">Masterpiece Builder</h1>
             </div>
-            <div class="text-[10px] bg-slate-800 border border-emerald-500/50 text-emerald-400 px-2.5 py-1 rounded-full font-bold">Copywriting Active</div>
+            <div class="text-[10px] bg-slate-800 border border-emerald-500/50 text-emerald-400 px-2.5 py-1 rounded-full font-bold">Script Fixed!</div>
         </div>
     </header>
 
@@ -179,9 +179,9 @@
                 <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 pb-2">🎨 Warna Background & Tema</h4>
                 
                 <div class="grid grid-cols-3 gap-2">
-                    <button onclick="setTema('#0f172a', '#f8fafc', '#1e293b', '#38bdf8', '#ffffff', '#334155', '#10b981')" class="bg-slate-800 text-[10px] py-2 rounded-lg font-bold">Gelap Elegan</button>
-                    <button onclick="setTema('#0284c7', '#f0f9ff', '#0369a1', '#bae6fd', '#ffffff', '#0f172a', '#f59e0b')" class="bg-sky-700 text-[10px] py-2 rounded-lg font-bold">Biru Trust</button>
-                    <button onclick="setTema('#166534', '#f0fdf4', '#064e3b', '#a7f3d0', '#ffffff', '#0f172a', '#f59e0b')" class="bg-emerald-800 text-[10px] py-2 rounded-lg font-bold">Hijau Syariah</button>
+                    <button onclick="setTema('#0f172a', '#f8fafc', '#1e293b', '#38bdf8', '#ffffff', '#334155', '#10b981')" class="bg-slate-800 text-[10px] py-2 rounded-lg font-bold hover:bg-slate-700">Gelap Elegan</button>
+                    <button onclick="setTema('#0284c7', '#f0f9ff', '#0369a1', '#bae6fd', '#ffffff', '#0f172a', '#f59e0b')" class="bg-sky-700 text-[10px] py-2 rounded-lg font-bold hover:bg-sky-600">Biru Trust</button>
+                    <button onclick="setTema('#166534', '#f0fdf4', '#064e3b', '#a7f3d0', '#ffffff', '#0f172a', '#f59e0b')" class="bg-emerald-800 text-[10px] py-2 rounded-lg font-bold hover:bg-emerald-700">Hijau Syariah</button>
                 </div>
 
                 <div class="grid grid-cols-3 gap-2 border-t border-slate-800 pt-3">
@@ -242,6 +242,7 @@
             document.getElementById('c-deskripsi').value = cDesk;
             document.getElementById('c-btn').value = cBtn;
             autoCompile();
+            alert("Tema berhasil diterapkan!");
         }
 
         function prosesGambarBase64(event, tipe) {
@@ -261,6 +262,7 @@
                         if(tipe === 'logo') logoBase64 = canvas.toDataURL('image/jpeg', 0.8);
                         else gambarBase64 = canvas.toDataURL('image/jpeg', 0.6);
                         autoCompile();
+                        alert("Foto berhasil diproses!");
                     };
                     img.src = e.target.result;
                 };
@@ -276,11 +278,11 @@
                 document.getElementById('t-judul').value = data.judul;
                 document.getElementById('t-tagline').value = data.tagline;
                 document.getElementById('t-deskripsi').value = data.deskripsi;
-                document.getElementById('b-p1').value = data.b1;
-                document.getElementById('b-p2').value = data.b2;
-                document.getElementById('b-p3').value = data.b3;
-                document.getElementById('b-p4').value = data.b4;
-                document.getElementById('b-p5').value = data.b5;
+                document.getElementById('b-p1').value = data.b1 || "";
+                document.getElementById('b-p2').value = data.b2 || "";
+                document.getElementById('b-p3').value = data.b3 || "";
+                document.getElementById('b-p4').value = data.b4 || "";
+                document.getElementById('b-p5').value = data.b5 || "";
                 document.getElementById('t-testi').value = data.testimoni;
                 document.getElementById('t-faqq').value = data.faqq;
                 document.getElementById('t-faqa').value = data.faqa;
@@ -298,7 +300,6 @@
             const tagline = document.getElementById('t-tagline').value;
             const desk = document.getElementById('t-deskripsi').value;
             
-            // Benefit Points
             const b1 = document.getElementById('b-p1').value;
             const b2 = document.getElementById('b-p2').value;
             const b3 = document.getElementById('b-p3').value;
@@ -332,7 +333,6 @@
             let testiHTML = testi ? `<div class="mt-8 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl text-left"><p class="text-[11px] text-amber-600 font-bold uppercase tracking-wider mb-1">⭐ Testimoni</p><p class="text-xs text-slate-700 italic">"${testi}"</p></div>` : ``;
             let faqHTML = (faqq && faqa) ? `<div class="mt-6 border p-4 rounded-xl text-left bg-white shadow-sm"><p class="text-xs font-bold text-slate-800 mb-1">Q: ${faqq}</p><p class="text-xs text-slate-600">A: ${faqa}</p></div>` : ``;
 
-            // GENERATE 5 KEUNGGULAN SAKTI DENGAN STYLE AGAR SERASI TEMA
             let benefitHTML = "";
             if(b1 || b2 || b3 || b4 || b5) {
                 benefitHTML = `<div class="w-full mt-8 bg-black/5 border border-black/10 rounded-2xl p-5 text-left">
@@ -346,14 +346,15 @@
                 benefitHTML += `</ul></div>`;
             }
 
+            // PERBAIKAN SCRIPT TAG AGAR TIDAK BOCOR
             outputCode = `<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${judul}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2 family=Montserrat:wght@700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-slate-200 min-h-screen flex flex-col items-center overflow-x-hidden font-['Poppins']">
     <div class="w-full max-w-md bg-white shadow-2xl min-h-screen flex flex-col">
@@ -412,6 +413,10 @@
         }
 
         function unduhHasilKoding() {
+            if(!outputCode) {
+                alert("Generate kode dulu Pakde!");
+                return;
+            }
             const blob = new Blob([outputCode], { type: "text/html;charset=utf-8" });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
