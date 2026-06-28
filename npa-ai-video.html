@@ -1,219 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NPA HYPE DIRECTOR STUDIO V4.0</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { 
-            font-family: 'Space Grotesk', sans-serif; 
-            background-color: #f4f4f0;
-            background-image: radial-gradient(#000 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        .brutal-box { border: 3px solid #000; box-shadow: 5px 5px 0px 0px #000; border-radius: 0; }
-        .brutal-btn { border: 3px solid #000; box-shadow: 4px 4px 0px 0px #000; transition: all 0.1s; font-weight: bold; text-transform: uppercase; cursor: pointer; }
-        .brutal-btn:active { box-shadow: 0px 0px 0px 0px #000; transform: translate(4px, 4px); }
-        .brutal-input { border: 3px solid #000; border-radius: 0; background: #fff; padding: 10px; font-weight: 600; width: 100%; outline: none; }
-        .brutal-input:focus { background: #e0f2fe; }
-        .image-preview { max-height: 150px; object-fit: contain; border: 2px solid #000; display: none; margin-top: 10px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>NPA HYPE DIRECTOR STUDIO V5.0</title>
+<script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+<link href="[https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap](https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap)" rel="stylesheet">
+<style>
+body {
+font-family: 'Space Grotesk', sans-serif;
+background-color: #f4f4f0;
+background-image: radial-gradient(#000 1px, transparent 1px);
+background-size: 20px 20px;
+}
+.brutal-box { border: 3px solid #000; box-shadow: 5px 5px 0px 0px #000; border-radius: 0; }
+.brutal-btn { border: 3px solid #000; box-shadow: 4px 4px 0px 0px #000; transition: all 0.1s; font-weight: bold; text-transform: uppercase; cursor: pointer; }
+.brutal-btn:active { box-shadow: 0px 0px 0px 0px #000; transform: translate(4px, 4px); }
+.brutal-input { border: 3px solid #000; border-radius: 0; background: #fff; padding: 10px; font-weight: 600; width: 100%; outline: none; }
+.brutal-input:focus { background: #e0f2fe; }
+.image-preview { max-height: 150px; object-fit: contain; border: 2px solid #000; display: none; margin-top: 10px; }
+</style>
 </head>
 <body class="p-2 sm:p-6 min-h-screen text-black">
-
-    <div class="max-w-2xl mx-auto bg-white brutal-box p-4 sm:p-8 relative">
-        
-        <!-- HEADER -->
-        <div class="flex items-center gap-4 border-b-4 border-black pb-4 mb-6">
-            <div class="w-12 h-12 bg-[#22d3ee] brutal-box flex items-center justify-center">
-                <span class="text-2xl">🎥</span>
-            </div>
-            <div>
-                <h1 class="text-xl sm:text-2xl font-black uppercase tracking-tight">NPA Hype Studio V4</h1>
-                <span class="bg-[#e11d48] text-white text-[10px] px-2 py-0.5 font-bold uppercase tracking-widest border-2 border-black">Ultimate Workflow</span>
-            </div>
-        </div>
-
-        <!-- CONFIG SECTION -->
-        <div class="mb-4 flex items-center gap-2">
-            <span class="text-xl">⚙️</span>
-            <h2 class="text-lg font-black uppercase tracking-widest">CONFIG</h2>
-        </div>
-        <hr class="border-t-4 border-black mb-6">
-
-        <div class="space-y-5">
-            
-            <!-- KATEGORI KONTEN -->
-            <div>
-                <label class="block text-[10px] font-black text-[#e11d48] uppercase tracking-wider mb-1">📚 Kategori Konten</label>
-                <select id="kategori" class="brutal-input bg-[#fef08a]">
-                    <option value="3ireborn">1. 3iReborn (Financial Freedom)</option>
-                    <option value="istikmal">2. Istikmal Syariah (Umroh)</option>
-                    <option value="cruise">3. Reward Cruise (Travel)</option>
-                    <option value="bali">4. Melali Bali (Wisata)</option>
-                    <option value="umkm">5. UMKM (Bisnis Lokal)</option>
-                    <option value="affiliate">6. Produk Shopee / Affiliate</option>
-                </select>
-            </div>
-
-            <!-- UPLOAD FOTO REFERENSI -->
-            <div>
-                <label class="block text-[10px] font-black uppercase tracking-wider mb-1">🖼️ Foto Subjek / Produk Utama (Referensi)</label>
-                <div class="brutal-input bg-gray-50 flex items-center justify-between p-2">
-                    <input type="file" id="foto-referensi" accept="image/*" class="text-xs" onchange="previewImage(event)">
-                </div>
-                <img id="img-preview" src="" class="image-preview w-full" alt="Preview Foto">
-                <p class="text-[9px] text-gray-500 mt-1 italic">*Foto ini akan ditampilkan di hasil akhir sebagai pengingat lampiran saat generate video.</p>
-            </div>
-
-            <!-- IDE KASAR -->
-            <div>
-                <div class="flex justify-between items-end mb-1">
-                    <label class="block text-[10px] font-black uppercase tracking-wider">Ide Kasar / Naskah Singkat</label>
-                    <button onclick="suntikKarakterPakde()" class="text-[9px] bg-black text-white px-2 py-1 uppercase font-bold hover:bg-gray-800 border border-black">✨ Auto: Karakter Pakde</button>
-                </div>
-                <textarea id="ide-kasar" rows="3" class="brutal-input text-sm" placeholder="Ketik ide mentah di sini..."></textarea>
-                <button onclick="autoGenerateDeskripsi()" class="brutal-btn bg-[#facc15] w-full py-2 text-xs mt-2">✨ Auto Setting Dari Ide Kasar</button>
-            </div>
-
-            <!-- DESKRIPSI UTAMA -->
-            <div>
-                <label class="block text-[10px] font-black uppercase tracking-wider mb-1 text-blue-700">Deskripsi Utama / Sinopsis</label>
-                <textarea id="deskripsi-utama" rows="5" class="brutal-input text-sm font-mono text-gray-700 bg-gray-50" placeholder="Skenario detail untuk AI akan muncul di sini..."></textarea>
-            </div>
-
-            <!-- GRID SETTING -->
-            <div class="grid grid-cols-2 gap-4 pt-4 border-t-4 border-black">
-                <div>
-                    <label class="block text-[9px] font-black uppercase tracking-wider mb-1">Durasi (s)</label>
-                    <input type="number" id="durasi-max" class="brutal-input text-center" value="10">
-                </div>
-                <div>
-                    <label class="block text-[9px] font-black uppercase tracking-wider mb-1">Aspect Ratio</label>
-                    <select id="aspect-ratio" class="brutal-input text-xs">
-                        <option value="--ar 9:16">9:16 (Vertikal - TikTok)</option>
-                        <option value="--ar 16:9">16:9 (Horizontal - YouTube)</option>
-                    </select>
-                </div>
-            </div>
-            
-            <!-- TOMBOL GENERATE -->
-            <button onclick="generateWorkflow()" class="brutal-btn bg-[#22d3ee] w-full py-4 text-sm mt-6 mb-8 text-black">
-                🚀 GENERATE UNIVERSAL WORKFLOW
-            </button>
-        </div>
-
-        <!-- OUTPUT SECTION -->
-        <div id="output-container" class="space-y-6 hidden border-t-4 border-black pt-8">
-            <h2 class="text-xl font-black uppercase tracking-widest text-center mb-6 bg-black text-white py-2">OUTPUT STUDIO</h2>
-            <div id="render-hasil" class="space-y-8"></div>
-        </div>
-
-    </div>
-
-    <script>
-        let uploadedImageBase64 = "";
-
-        function previewImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.getElementById('img-preview');
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                    uploadedImageBase64 = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function suntikKarakterPakde() {
-            const kategori = document.getElementById('kategori').value;
-            let ide = "";
-            if(kategori === '3ireborn') ide = "Pakde Sugiarto menjelaskan rahasia finansial 3iReborn. Wajah optimis.";
-            else if(kategori === 'istikmal') ide = "Pakde Sugiarto mengajak umroh bareng Istikmal Syariah. Nuansa islami.";
-            else if(kategori === 'affiliate') ide = "Pakde Sugiarto unboxing produk Shopee, lampu studio terang.";
-            else ide = "Pakde Sugiarto (56 tahun) memberikan motivasi bisnis di depan kamera.";
-
-            ide += " Tangan kiri amputasi di bawah siku, lengan baju kosong.";
-            document.getElementById('ide-kasar').value = ide;
-            
-            document.getElementById('ide-kasar').style.backgroundColor = "#bbf7d0";
-            setTimeout(() => document.getElementById('ide-kasar').style.backgroundColor = "#fff", 500);
-        }
-
-        function autoGenerateDeskripsi() {
-            const ide = document.getElementById('ide-kasar').value;
-            const kategori = document.getElementById('kategori').options[document.getElementById('kategori').selectedIndex].text;
-            if(!ide) { alert("Isi Ide Kasar dulu Pakde!"); return; }
-
-            let deskripsi = "";
-            if(ide.toLowerCase().includes("pakde") || ide.toLowerCase().includes("amputasi")) {
-                deskripsi = "A photorealistic cinematic portrayal of a 56-year-old Indonesian digital mentor wearing glasses. THEME: " + kategori + ". CRITICAL PHYSICAL DETAIL: His left arm is physically amputated. The left sleeve is completely empty, flat, and hangs naturally. No left hand or forearm is visible. The camera focuses tightly on his facial expression. Cinematic lighting, 8k resolution. SCENE ACTION: " + ide;
-            } else {
-                deskripsi = "A highly detailed, cinematic scene for " + kategori + ". SCENE ACTION: " + ide + ". Professional studio lighting, hyper-realistic details, and smooth natural movements.";
-            }
-            
-            const desk = document.getElementById('deskripsi-utama');
-            desk.value = deskripsi;
-            desk.style.backgroundColor = "#e0f2fe";
-            setTimeout(() => desk.style.backgroundColor = "#f9fafb", 500);
-        }
-
-        function copyTeks(id) {
-            const text = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert("📋 Teks berhasil disalin!");
-            }).catch(err => {
-                alert("Gagal menyalin. Silakan block dan copy manual.");
-            });
-        }
-
-        function generateWorkflow() {
-            const deskripsi = document.getElementById('deskripsi-utama').value;
-            if(!deskripsi) { alert("Klik 'Auto Setting' dulu!"); return; }
-
-            const durasi = document.getElementById('durasi-max').value;
-            const ar = document.getElementById('aspect-ratio').value;
-            
-            let imgHtml = uploadedImageBase64 ? `<div class="mt-4 border-t-2 border-dashed border-black pt-4"><p class="text-[10px] font-bold mb-2">FOTO REFERENSI (PASTIKAN UPLOAD INI KE AI VIDEO):</p><img src="${uploadedImageBase64}" class="max-h-32 border-2 border-black object-contain"></div>` : `<div class="mt-4 text-[10px] text-red-600 font-bold border-t-2 border-dashed border-black pt-4">⚠️ Peringatan: Tidak ada foto referensi yang diupload! Ingat, AI Video butuh gambar asli!</div>`;
-
-            let htmlRender = "";
-            let idStory = `st-1`;
-            let idVideo = `vd-1`;
-
-            // PROMPT STORYBOARD (BIRU)
-            htmlRender += `
-            <div class="relative">
-                <div class="brutal-box bg-[#38bdf8] p-3 flex justify-between items-center mb-[-4px] relative z-10">
-                    <h3 class="font-black text-xs uppercase text-black">⊞ PROMPT GAMBAR / STORYBOARD</h3>
-                    <button onclick="copyTeks('${idStory}')" class="bg-white text-black font-bold text-[10px] px-3 py-1 border-2 border-black hover:bg-gray-200">📋 COPY</button>
-                </div>
-                <div class="brutal-box bg-white p-4 pt-6 text-xs text-gray-800 font-mono leading-relaxed" id="${idStory}">
-                    Generate a high-resolution reference image. SCENE: ${deskripsi}. STYLE: Cinematic photorealistic master shot, 8k ${ar}
-                </div>
-            </div>`;
-
-            // PROMPT VIDEO KLING/LUMA (KUNING)
-            htmlRender += `
-            <div class="relative mt-4">
-                <div class="brutal-box bg-[#facc15] p-3 flex justify-between items-center mb-[-4px] relative z-10 border-dashed">
-                    <h3 class="font-black text-xs uppercase text-black">🎞️ AI VIDEO PROMPT (${durasi}S)</h3>
-                    <button onclick="copyTeks('${idVideo}')" class="bg-white text-black font-bold text-[10px] px-3 py-1 border-2 border-black hover:bg-gray-200">📋 COPY</button>
-                </div>
-                <div class="brutal-box bg-white p-4 pt-6 text-xs text-gray-800 font-mono leading-relaxed border-dashed border-4" id="${idVideo}">
-                    Animate the provided reference image exactly. SCENE: ${deskripsi}. 
-                    [STRICT AI CONSTRAINTS]: Movement must be minimal and natural. DO NOT hallucinate limbs. The left shoulder/sleeve must remain completely static and empty. Focus animation on subtle facial expressions.
-                </div>
-                ${imgHtml}
-            </div>`;
-
-            document.getElementById('render-hasil').innerHTML = htmlRender;
-            document.getElementById('output-container').classList.remove('hidden');
-        }
-    </script>
+​<div class="max-w-2xl mx-auto bg-white brutal-box p-4 sm:p-8 relative">
+​<!-- HEADER -->
+<div class="flex items-center gap-4 border-b-4 border-black pb-4 mb-6">
+<div class="w-12 h-12 bg-[#22d3ee] brutal-box flex items-center justify-center">
+<span class="text-2xl">🎥</span>
+</div>
+<div>
+<h1 class="text-xl sm:text-2xl font-black uppercase tracking-tight">NPA Hype Studio V5</h1>
+<span class="bg-[#e11d48] text-white text-[10px] px-2 py-0.5 font-bold uppercase tracking-widest border-2 border-black">Storyboard Workflow</span>
+</div>
+</div>
+​<!-- CONFIG SECTION -->
+<div class="mb-4 flex items-center gap-2">
+<span class="text-xl">⚙️</span>
+<h2 class="text-lg font-black uppercase tracking-widest">STORYBOARD CONFIG</h2>
+</div>
+<hr class="border-t-4 border-black mb-6">
+​<div class="space-y-5">
+​<!-- KATEGORI KONTEN -->
+<div>
+<label class="block text-[10px] font-black text-[#e11d48] uppercase tracking-wider mb-1">📚 Kategori Konten</label>
+<select id="kategori" class="brutal-input bg-[#fef08a]">
+<option value="3ireborn">1. 3iReborn (Financial Freedom)</option>
+<option value="istikmal">2. Istikmal Syariah (Umroh)</option>
+<option value="cruise">3. Reward Cruise (Travel)</option>
+<option value="bali">4. Melali Bali (Wisata)</option>
+<option value="umkm">5. UMKM (Bisnis Lokal)</option>
+<option value="affiliate">6. Produk Shopee / Affiliate</option>
+</select>
+</div>
+​<!-- UPLOAD FOTO REFERENSI -->
+<div>
+<label class="block text-[10px] font-black uppercase tracking-wider mb-1">🖼️ Foto Subjek / Produk Utama (Referensi)</label>
+<div class="brutal-input bg-gray-50 flex items-center justify-between p-2">
+<input type="file" id="foto-referensi" accept="image/*" class="text-xs" onchange="previewImage(event)">
+</div>
+<img id="img-preview" src="" class="image-preview w-full" alt="Preview Foto">
+<p class="text-[9px] text-gray-500 mt-1 italic">*Upload foto asli di sini agar tampil di panduan hasil akhir.</p>
+</div>
+​<!-- IDE KASAR -->
+<div>
+<div class="flex justify-between items-end mb-1">
+<label class="block text-[10px] font-black uppercase tracking-wider">Ide Kasar / Naskah Singkat</label>
+<button onclick="suntikKarakterPakde()" class="text-[9px] bg-black text-white px-2 py-1 uppercase font-bold hover:bg-gray-800 border border-black">✨ Auto: Karakter Pakde</button>
+</div>
+<textarea id="ide-kasar" rows="3" class="brutal-input text-sm" placeholder="Ketik ide mentah di sini..."></textarea>
+<button onclick="autoGenerateDeskripsi()" class="brutal-btn bg-[#facc15] w-full py-2 text-xs mt-2">✨ Auto Setting Dari Ide Kasar</button>
+</div>
+​<!-- DESKRIPSI UTAMA -->
+<div>
+<label class="block text-[10px] font-black uppercase tracking-wider mb-1 text-blue-700">Deskripsi Utama / Sinopsis</label>
+<textarea id="deskripsi-utama" rows="5" class="brutal-input text-sm font-mono text-gray-700 bg-gray-50" placeholder="Skenario detail untuk AI akan muncul di sini..."></textarea>
+</div>
+​<!-- DIALOG & TEKS LAYAR -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-4 border-dashed border-gray-300 p-4 bg-gray-50">
+<div>
+<label class="block text-[10px] font-black uppercase tracking-wider mb-1 text-red-600">🎙️ Dialog / Narasi</label>
+<textarea id="dialog-teks" rows="3" class="brutal-input text-xs" placeholder="Contoh: Dulu TV saya rusak..."></textarea>
+</div>
+<div>
+<label class="block text-[10px] font-black uppercase tracking-wider mb-1 text-green-600">🔠 Teks di Layar (On-Screen)</label>
+<textarea id="layar-teks" rows="3" class="brutal-input text-xs" placeholder="Contoh: MASALAH: TV RUSAK"></textarea>
+</div>
+</div>
+​<!-- GRID SETTING DURASI (PEMECAHAN SCENE) -->
+<div class="grid grid-cols-3 gap-3 pt-4 border-t-4 border-black">
+<div>
+<label class="block text-[9px] font-black uppercase tracking-wider mb-1">Total Durasi (s)</label>
+<input type="number" id="durasi-total" class="brutal-input text-center" value="15">
+</div>
+<div>
+<label class="block text-[9px] font-black uppercase tracking-wider mb-1">Max / Sheet (s)</label>
+<input type="number" id="durasi-max" class="brutal-input text-center" value="10">
+</div>
+<div>
+<label class="block text-[9px] font-black uppercase tracking-wider mb-1">Aspect Ratio</label>
+<select id="aspect-ratio" class="brutal-input text-[10px] px-1">
+<option value="--ar 9:16">9:16 (Vert)</option>
+<option value="--ar 16:9">16:9 (Horz)</option>
+</select>
+</div>
+</div>
+​<!-- TOMBOL GENERATE -->
+<button onclick="generateWorkflow()" class="brutal-btn bg-[#22d3ee] w-full py-4 text-sm mt-6 mb-8 text-black">
+🚀 GENERATE UNIVERSAL WORKFLOW
+</button>
+</div>
+​<!-- OUTPUT SECTION -->
+<div id="output-container" class="space-y-6 hidden border-t-4 border-black pt-8">
+<h2 class="text-xl font-black uppercase tracking-widest text-center mb-6 bg-black text-white py-2">OUTPUT STUDIO</h2>
+<div id="render-hasil" class="space-y-8"></div>
+</div>
+​</div>
+​<script>
+let uploadedImageBase64 = "";
+​function previewImage(event) {
+const file = event.target.files[0];
+if (file) {
+const reader = new FileReader();
+reader.onload = function(e) {
+const img = document.getElementById('img-preview');
+img.src = e.target.result;
+img.style.display = 'block';
+uploadedImageBase64 = e.target.result;
+}
+reader.readAsDataURL(file);
+}
+}
+​function suntikKarakterPakde() {
+const kategori = document.getElementById('kategori').value;
+let ide = "";
+if(kategori === '3ireborn') ide = "Pakde Sugiarto menjelaskan rahasia finansial 3iReborn. Wajah optimis.";
+else if(kategori === 'istikmal') ide = "Pakde Sugiarto mengajak umroh bareng Istikmal Syariah. Nuansa islami.";
+else if(kategori === 'affiliate') ide = "Pakde Sugiarto unboxing produk Shopee, lampu studio terang.";
+else ide = "Pakde Sugiarto (56 tahun) memberikan motivasi bisnis di depan kamera.";
+​ide += " Tangan kiri amputasi di bawah siku, lengan baju kosong.";
+document.getElementById('ide-kasar').value = ide;
+document.getElementById('dialog-teks').value = '"Halo semuanya, hari ini saya akan membagikan rahasia sukses berbisnis dari rumah."';
+document.getElementById('layar-teks').value = "TIPS SUKSES PAKDE";
+​document.getElementById('ide-kasar').style.backgroundColor = "#bbf7d0";
+setTimeout(() => document.getElementById('ide-kasar').style.backgroundColor = "#fff", 500);
+}
+​function autoGenerateDeskripsi() {
+const ide = document.getElementById('ide-kasar').value;
+const kategori = document.getElementById('kategori').options[document.getElementById('kategori').selectedIndex].text;
+if(!ide) { alert("Isi Ide Kasar dulu Pakde!"); return; }
+​let deskripsi = "";
+if(ide.toLowerCase().includes("pakde") || ide.toLowerCase().includes("amputasi")) {
+deskripsi = "A photorealistic cinematic portrayal of a 56-year-old Indonesian digital mentor wearing glasses. THEME: " + kategori + ". CRITICAL PHYSICAL DETAIL: His left arm is physically amputated. The left sleeve is completely empty, flat, and hangs naturally. No left hand or forearm is visible. The camera focuses tightly on his facial expression. Cinematic lighting, 8k resolution. SCENE ACTION: " + ide;
+} else {
+deskripsi = "A highly detailed, cinematic scene for " + kategori + ". SCENE ACTION: " + ide + ". Professional studio lighting, hyper-realistic details, and smooth natural movements.";
+}
+​const desk = document.getElementById('deskripsi-utama');
+desk.value = deskripsi;
+desk.style.backgroundColor = "#e0f2fe";
+setTimeout(() => desk.style.backgroundColor = "#f9fafb", 500);
+}
+​function copyTeks(id) {
+const text = document.getElementById(id).innerText;
+navigator.clipboard.writeText(text).then(() => {
+alert("📋 Teks berhasil disalin!");
+}).catch(err => {
+alert("Gagal menyalin. Silakan block dan copy manual.");
+});
+}
+​function generateWorkflow() {
+const deskripsi = document.getElementById('deskripsi-utama').value;
+if(!deskripsi) { alert("Klik 'Auto Setting' dulu!"); return; }
+​const total = parseInt(document.getElementById('durasi-total').value);
+const max = parseInt(document.getElementById('durasi-max').value);
+const ar = document.getElementById('aspect-ratio').value;
+const dialog = document.getElementById('dialog-teks').value;
+const layar = document.getElementById('layar-teks').value;
+​let imgHtml = uploadedImageBase64 ? <div class="mt-4 border-t-2 border-dashed border-black pt-4"><p class="text-[10px] font-bold mb-2">FOTO REFERENSI (PASTIKAN UPLOAD INI KE AI VIDEO):</p><img src="${uploadedImageBase64}" class="max-h-32 border-2 border-black object-contain"></div> : <div class="mt-4 text-[10px] text-red-600 font-bold border-t-2 border-dashed border-black pt-4">⚠️ Peringatan: Tidak ada foto referensi yang diupload! Ingat, AI Video butuh gambar asli!</div>;
+​let parts = [];
+let sisa = total;
+while(sisa > 0) {
+if(sisa >= max) { parts.push(max); sisa -= max; }
+else { parts.push(sisa); sisa = 0; }
+}
+​let htmlRender = "";
+let startTime = 0;
+​parts.forEach((durasi, index) => {
+let partNum = index + 1;
+let endTime = startTime + durasi;
+​let idStory = st-${partNum};
+let idVideo = vd-${partNum};
+​// PROMPT STORYBOARD (BIRU)
+htmlRender +=  <div class="relative"> <div class="brutal-box bg-[#38bdf8] p-3 flex justify-between items-center mb-[-4px] relative z-10"> <h3 class="font-black text-xs uppercase text-black">⊞ STORYBOARD FRAME (PART ${partNum} (${durasi}S))</h3> <button onclick="copyTeks('${idStory}')" class="bg-white text-black font-bold text-[10px] px-3 py-1 border-2 border-black hover:bg-gray-200">📋 COPY</button> </div> <div class="brutal-box bg-white p-4 pt-6 text-xs text-gray-800 font-mono leading-relaxed" id="${idStory}"> Create a single high-resolution storyboard reference sheet titled 'SHOT BOARD' for Sheet ${partNum} (${startTime}s - ${endTime}s). GRID: Sequential 4-panel grid. SCENE DESCRIPTION: ${deskripsi}. <br><br> <strong>[BOTTOM FOOTER NOTES]</strong><br> DIALOG: ${dialog || 'N/A'}<br> TEXT ON SCREEN: ${layar || 'N/A'}<br> CAMERA: Medium Close-up. Style: Cinematic photorealistic master shot, 35mm film grain, 8k ${ar} </div> </div>;
+​// PROMPT VIDEO KLING/LUMA (KUNING)
+htmlRender +=  <div class="relative mt-4"> <div class="brutal-box bg-[#facc15] p-3 flex justify-between items-center mb-[-4px] relative z-10 border-dashed"> <h3 class="font-black text-xs uppercase text-black">🎞️ LUMA / KLING VIDEO PROMPT (PART ${partNum} (${durasi}S))</h3> <button onclick="copyTeks('${idVideo}')" class="bg-white text-black font-bold text-[10px] px-3 py-1 border-2 border-black hover:bg-gray-200">📋 COPY</button> </div> <div class="brutal-box bg-white p-4 pt-6 text-xs text-gray-800 font-mono leading-relaxed border-dashed border-4" id="${idVideo}"> Animate the provided storyboard reference image exactly, maintaining strict visual continuity. The scene features: ${deskripsi}.  [STRICT AI CONSTRAINTS]: Keep the camera angle consistent throughout the ${durasi}-second clip. Movement must be minimal and natural. DO NOT hallucinate limbs. The left shoulder/sleeve must remain completely static and empty. Focus animation on subtle facial expressions. </div> ${partNum === 1 ? imgHtml : ''} </div> <div class="h-8"></div>;
+​startTime = endTime;
+});
+​document.getElementById('render-hasil').innerHTML = htmlRender;
+document.getElementById('output-container').classList.remove('hidden');
+}
+</script>
 </body>
 </html>
